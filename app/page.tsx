@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <>
-      <div className="text-lg animate-fade container py-5 px-7 my-10 overflow-hidden border border-white bg-black bg-opacity-50">
+      <div className="text-lg animate-fade container py-5 px-7 my-10 overflow-hidden">
         <>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc euismod,
           velit eget placerat gravida, felis nunc finibus tellus, molestie

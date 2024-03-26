@@ -25,7 +25,7 @@ const Navbar = () => {
               isActive
                 ? "font-bold py-3 border-b bg-black bg-opacity-65 px-3 border-slate-500 border-r border-l border-b-gold"
                 : // : "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-0 transition duration-300 ease-in-out hover:opacity-70"
-                  "bg-black bg-opacity-35 transition-all ease-in-out delay-100 border-slate-500 hover:border-l hover:border-r hover:border-b-gold hover:font-bold text-slate-500 py-3 border-b hover:bg-blend-luminosity hover:bg-black hover:bg-opacity-65 hover:text-white px-3"
+                  "bg-black bg-opacity-35 transition-all ease-in-out duration:300 delay-100 border-slate-500 hover:border-l hover:border-r hover:border-b-gold hover:font-bold text-slate-500 py-3 border-b hover:bg-blend-luminosity hover:bg-black hover:bg-opacity-65 hover:text-white px-3"
             }
           >
             {/* <div className={isHome ? "font-bold" : "bg-transparent"}> */}
