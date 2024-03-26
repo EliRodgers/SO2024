@@ -4,6 +4,7 @@ import "./globals.css";
 import Link from "next/link";
 import Navbar from "./components/navbar";
 import Button from "./components/button";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: {
@@ -20,21 +21,37 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-nova overscroll-none animate-fade">
+      <body className="font-grotesk overscroll-none animate-fade">
         <link rel="stylesheet" href="https://use.typekit.net/zao2vdq.css" />
-        <header className="grid grid-cols-7 bg-darker-blue overflow-hidden border-solid border-b border-white text-3xl">
-          <div className="border-r flex col-span-1 py-3 items-center justify-center transition ease-in-out delay:150 duration:300 hover:bg-dark-blue">
-            <Button />
-          </div>
-          <div className="flex justify-center items-center col-span-6 p-5">
-            <div className="tracking-wide text-4xl font-bold font-grotesksc">
-              25th Annual Collegiate Wushu Tournament
+        <div className="sticky top-0 backdrop-blur">
+          <header className="grid grid-cols-7 bg-black bg-opacity-45 overflow-hidden border-solid border-b border-slate-500 text-3xl">
+            <div className="flex col-span-1 py-3 items-center justify-center transition ease-in-out delay:150 duration:300 hover:scale-105 hover:animate-pulse">
+              <Button />
             </div>
-          </div>
-        </header>
-        <Navbar />
+            <div className="flex justify-center items-center col-span-6 p-5">
+              <div className="tracking-wide text-5xl font-bold font-grotesksc">
+                25th Annual Collegiate Wushu Tournament
+              </div>
+            </div>
+          </header>
+          <Navbar />
+        </div>
         {children}
-        <footer className="bg-darker-blue overflow-hidden">Footer</footer>
+        <footer className="py-5 border-t border-slate-500 bg-black bg-opacity-60 overflow-hidden">
+          <div className="inline-grid grid-flow-col gap-5 px-5">
+            <Link href="https://www.instagram.com/uclawushu/">
+              <Image
+                src="/instagram.png"
+                width={20}
+                height={20}
+                alt="instagram"
+              />
+            </Link>
+            <Link href="https://github.com/rachjn/collegiates-scoreboard">
+              <Image src="/github.png" width={20} height={20} alt="github" />
+            </Link>
+          </div>
+        </footer>
       </body>
     </html>
   );

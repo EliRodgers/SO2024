@@ -22,6 +22,7 @@ module.exports = {
         "darker-blue": "#005587",
         "lighter-blue": "#8BB8E8",
         "lightest-blue": "#DAEBFE",
+        gold: "#FFD100",
       },
       borderWidth: {
         2: "2px",
@@ -32,6 +33,10 @@ module.exports = {
 
       animation: {
         fade: "fadeIn .5s ease-in-out",
+      },
+
+      backgroundImage: {
+        swirl: "url('/images/sitebackground.png')",
       },
 
       keyframes: {

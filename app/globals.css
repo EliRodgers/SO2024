@@ -5,5 +5,7 @@
 
 :root {
     color-scheme: dark;
-    background-color: #021824;
+    background-image: url('/sitebackground.png');
 }
+
+/* background-color: #021824; */
