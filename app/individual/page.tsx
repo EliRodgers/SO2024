@@ -8,9 +8,7 @@ export const metadata: Metadata = {
 export default function Individual() {
   return (
     <>
-      <div className="pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">
-        Individual Scores
-      </div>
+      <div className="animate-fade overflow-hidden">Individual Scores</div>
     </>
   );
 }

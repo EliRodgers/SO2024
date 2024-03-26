@@ -12,6 +12,8 @@ module.exports = {
     fontFamily: {
       nova: ["proxima-nova", "sans-serif"],
       novawide: ["proxima-nova-extra-wide", "sans-serif"],
+      grotesk: ["niveau-grotesk", "sans-serif"],
+      grotesksc: ["niveau-grotesk-small-caps", "sans-serif"],
     },
     extend: {
       colors: {
@@ -26,6 +28,17 @@ module.exports = {
       },
       container: {
         center: true,
+      },
+
+      animation: {
+        fade: "fadeIn .5s ease-in-out",
+      },
+
+      keyframes: {
+        fadeIn: {
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+        },
       },
     },
   },
