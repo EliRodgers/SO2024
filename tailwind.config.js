@@ -12,16 +12,17 @@ module.exports = {
     fontFamily: {
       nova: ["proxima-nova", "sans-serif"],
       novawide: ["proxima-nova-extra-wide", "sans-serif"],
-      // font-family: proxima-nova, sans-serif;
-      // font-style: normal;
-      // font-weight: 400;
     },
     extend: {
       colors: {
-        "darkest-blue": "#003B5C",
+        "darkest-blue": "#021824",
+        "dark-blue": "#003B5C",
         "darker-blue": "#005587",
         "lighter-blue": "#8BB8E8",
         "lightest-blue": "#DAEBFE",
+      },
+      borderWidth: {
+        2: "2px",
       },
     },
   },
