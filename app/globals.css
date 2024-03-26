@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://use.typekit.net/zao2vdq.css");
+
+:root {
+    color-scheme: dark;
+    background-color: #003B5C;
+}

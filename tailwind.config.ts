@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+@import url("https://use.typekit.net/zao2vdq.css");
 
 const config: Config = {
   content: [

@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+
 import "./globals.css";
 import Link from "next/link";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
@@ -27,17 +25,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <header className="bg-sky-400 overflow-hidden">Header</header>
-        {navLinks.map((link) => {
-          return (
-            <Link href={link.href} key={link.name}>
-              {link.name}
-            </Link>
-          );
-        })}
+      <body className="font-nova">
+        <link rel="stylesheet" href="https://use.typekit.net/zao2vdq.css" />
+        <header className="bg-lighter-blue overflow-hidden">Header</header>
+        <div className="grid grid-cols-4 justify-between">
+          {navLinks.map((link) => {
+            return (
+              // <div className="flex items-center justify-center">
+              <Link
+                className="font-novawide text-center"
+                href={link.href}
+                key={link.name}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
+        </div>
         {children}
-        <footer className="bg-sky-800 overflow-hidden">Footer</footer>
+        <footer className="bg-darker-blue overflow-hidden">Footer</footer>
       </body>
     </html>
   );
