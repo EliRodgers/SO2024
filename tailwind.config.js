@@ -24,6 +24,9 @@ module.exports = {
       borderWidth: {
         2: "2px",
       },
+      container: {
+        center: true,
+      },
     },
   },
   plugins: [],

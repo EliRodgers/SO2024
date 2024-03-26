@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import link from "next/link";
 
 const navLinks = [
-  { name: "Home", href: "/" },
   { name: "Team Standings", href: "/team" },
   { name: "Event Standings", href: "/event" },
   { name: "Individual Scores", href: "/individual" },
@@ -14,21 +13,23 @@ const navLinks = [
 const Navbar = () => {
   const pathname = usePathname();
   return (
-    <div className="grid grid-cols-4 justify-between font-novawide text-center divide-x">
+    <div className="grid grid-cols-3 font-novawide text-center divide-x uppercase">
       {navLinks.map((link) => {
         const isActive = pathname && pathname.startsWith(link.href);
+        // const isHome = pathname == "/";
         return (
-          // <div className="flex items-center justify-center">
           <Link
             href={link.href}
             key={link.name}
             className={
               isActive
-                ? "font-bold py-3 border-b bg-dark-blue"
-                : "transition ease-in-out delay-100 text-slate-500 py-3 border-b hover:bg-dark-blue hover:text-white"
+                ? "font-bold py-3 border-b bg-dark-blue px-3"
+                : "transition ease-in-out delay-100 hover:font-bold text-slate-500 py-3 border-b hover:bg-dark-blue hover:text-white px-3"
             }
           >
+            {/* <div className={isHome ? "font-bold" : "bg-transparent"}> */}
             {link.name}
+            {/* </div> */}
           </Link>
         );
       })}
