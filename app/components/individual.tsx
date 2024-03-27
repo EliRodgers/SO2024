@@ -1,19 +1,16 @@
-import EventS from "./components/event";
-import IndividualS from "./components/individual";
-import TeamS from "./components/team";
-
-export default function Home() {
+const IndividualS = () => {
   return (
-    <>
+    <div id="individual" className="scroll-mt-96">
       <div className="text-lg animate-fade container py-5 px-7 my-10 overflow-hidden">
         <>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc euismod,
-          velit eget placerat gravida, felis nunc finibus tellus, molestie
-          bibendum turpis magna ut ipsum. Integer eu nunc purus. Vivamus
-          tincidunt ullamcorper purus et tempor. In finibus viverra libero vitae
-          eleifend. Ut dignissim massa eget urna dictum finibus. Phasellus
-          consequat nisl non mattis ultrices. In a diam hendrerit, congue orci
-          vel, dapibus libero.
+          Individual Scores
+          <br></br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+          euismod, velit eget placerat gravida, felis nunc finibus tellus,
+          molestie bibendum turpis magna ut ipsum. Integer eu nunc purus.
+          Vivamus tincidunt ullamcorper purus et tempor. In finibus viverra
+          libero vitae eleifend. Ut dignissim massa eget urna dictum finibus.
+          Phasellus consequat nisl non mattis ultrices. In a diam hendrerit,
+          congue orci vel, dapibus libero.
           <div className="h-3"></div>
           Suspendisse eget ligula eu mi bibendum tempus. Praesent ipsum lorem,
           ultricies ac ipsum vel, venenatis gravida tellus. Sed at congue ipsum,
@@ -64,9 +61,8 @@ export default function Home() {
           orci, at venenatis ipsum euismod in. Ut quis orci elit.
         </>
       </div>
-      <TeamS />
-      <EventS />
-      <IndividualS />
-    </>
+    </div>
   );
-}
+};
+
+export default IndividualS;

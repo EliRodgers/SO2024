@@ -16,6 +16,9 @@ module.exports = {
       grotesksc: ["niveau-grotesk-small-caps", "sans-serif"],
     },
     extend: {
+      scrollMargin: {
+        96: "14rem",
+      },
       colors: {
         "darkest-blue": "#021824",
         "dark-blue": "#003B5C",

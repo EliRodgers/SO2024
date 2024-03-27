@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-grotesk overscroll-none animate-fade">
+      <body className="!scroll-smooth font-grotesk overscroll-none animate-fade">
         <link rel="stylesheet" href="https://use.typekit.net/zao2vdq.css" />
         <div className="sticky top-0 backdrop-blur">
           <header className="grid grid-cols-7 bg-black bg-opacity-45 overflow-hidden border-solid border-b border-slate-500 text-3xl">
