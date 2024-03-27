@@ -1,7 +1,7 @@
 const TeamS = () => {
   return (
     <div id="team" className="scroll-mt-96">
-      <div className="text-lg animate-fade container py-5 px-7 my-10 overflow-hidden">
+      <div className="text-lg animate-fade container py-2 px-7 my-10 overflow-hidden">
         <>
           Team Standings
           <br></br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
