@@ -17,7 +17,7 @@ module.exports = {
     },
     extend: {
       scrollMargin: {
-        96: "14rem",
+        96: "12rem",
       },
       colors: {
         "darkest-blue": "#021824",

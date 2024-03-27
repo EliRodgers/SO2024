@@ -5,7 +5,7 @@ import TeamS from "./components/team";
 export default function Home() {
   return (
     <>
-      <div className="text-lg animate-fade container py-5 px-7 my-10 overflow-hidden">
+      <div className="text-lg animate-fade container py-2 px-7 my-10 overflow-hidden">
         <>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc euismod,
           velit eget placerat gravida, felis nunc finibus tellus, molestie
@@ -64,9 +64,9 @@ export default function Home() {
           orci, at venenatis ipsum euismod in. Ut quis orci elit.
         </>
       </div>
-      <TeamS />
+      {/* <TeamS />
       <EventS />
-      <IndividualS />
+      <IndividualS /> */}
     </>
   );
 }

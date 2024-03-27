@@ -5,9 +5,9 @@ import { usePathname } from "next/navigation";
 import link from "next/link";
 
 const navLinks = [
-  { name: "Team Standings", href: "/#team" },
-  { name: "Event Standings", href: "/#event" },
-  { name: "Individual Scores", href: "/#individual" },
+  { name: "Team Standings", href: "/team" },
+  { name: "Event Standings", href: "/event" },
+  { name: "Individual Scores", href: "/individual" },
 ];
 
 const Navbar = () => {
