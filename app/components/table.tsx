@@ -22,9 +22,9 @@ const Table = ({ data, selectcolumns }: { data: any; selectcolumns: any }) => {
   ];
 
   return (
-    <table className="w-full mb-4">
+    <table className="w-full mb-4 lg:mb-8">
       <thead>
-        <tr className="capitalize text-lg font-grotesksc border-b">
+        <tr className="lg:text-2xl capitalize text-lg font-grotesksc border-b">
           {cols.map((head: { header: ReactNode; field: any }) => (
             <th className="p-1 text-left">{head.header}</th>
           ))}
@@ -42,7 +42,7 @@ const Table = ({ data, selectcolumns }: { data: any; selectcolumns: any }) => {
           }) => (
             <tr>
               {cols.map((col: { field: any }) => (
-                <td className="text-sm text-slate-300 p-3 border-b border-slate-500">
+                <td className="lg:text-base text-sm text-slate-300 p-3 border-b border-slate-500">
                   <div className="w-fit">
                     {row[col.field as keyof typeof row]}
                   </div>

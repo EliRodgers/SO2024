@@ -27,7 +27,7 @@ export default function Home() {
         </div>
         {rings.map((ring) => (
           <>
-            <div className="font-grotesksc text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
+            <div className="font-grotesksc lg:text-5xl text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
               {ring.name}
             </div>
             <Table data={rings} selectcolumns={mycolumns} />

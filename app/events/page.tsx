@@ -14,7 +14,7 @@ const Event = () => {
       {events.map((event) => (
         <>
           {/* <div className="font-grotesksc text-3xl font-bold text-gold mix-blend-screen"> */}
-          <div className="font-grotesksc text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
+          <div className="lg:mb-2 lg:text-5xl font-grotesksc text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
             {event.name}
           </div>
           <Table data={event.competitors} selectcolumns={mycolumns} />

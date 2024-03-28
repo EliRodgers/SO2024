@@ -28,7 +28,7 @@ const Individual = () => {
   return (
     // <div id="individual" className="scroll-mt-96">
     <div className="lg:text-lg animate-fade container lg:py-2 px-7 my-3 lg:my-10 overflow-hidden">
-      <div className="font-grotesksc text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
+      <div className="lg:mb-2 lg:text-5xl font-grotesksc text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
         competitors
       </div>
       <Table data={competitors} selectcolumns={mycolumns} />

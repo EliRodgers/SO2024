@@ -17,7 +17,7 @@ const Navbar = () => {
       <div className="bg-black bg-opacity-65 p-2 border-b border-slate-500">
         <Button />
       </div>
-      <div className="flex-auto text-sm lg:text-lg grid grid-flow-col font-grotesk tracking text-center uppercase">
+      <div className="flex-auto text-sm lg:text-xl grid grid-flow-col font-grotesk tracking text-center uppercase">
         {navLinks.map((link) => {
           const isActive = pathname && pathname.startsWith(link.href);
           // const isHome = pathname == "/";
@@ -28,8 +28,8 @@ const Navbar = () => {
                 key={link.name}
                 className={
                   isActive
-                    ? "font-bold py-4 border-b bg-black bg-opacity-85 border-slate-500 border-r border-l border-b-gold"
-                    : "bg-black py-4 bg-opacity-65 transition-all ease-in-out duration:300 delay-100 border-slate-500 hover:border-l hover:border-r hover:border-b-gold hover:font-bold text-slate-500 border-b hover:bg-black hover:bg-opacity-85 hover:text-white"
+                    ? "font-bold py-4 lg:py-6 border-b bg-black bg-opacity-85 border-slate-500 border-r border-l border-b-gold"
+                    : "bg-black py-4 lg:py-6 bg-opacity-65 transition-all ease-in-out duration:300 delay-100 border-slate-500 hover:border-l hover:border-r hover:border-b-gold hover:font-bold text-slate-500 border-b hover:bg-black hover:bg-opacity-85 hover:text-white"
                 }
               >
                 {link.name}
