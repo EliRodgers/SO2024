@@ -29,6 +29,11 @@ export const events = [
         "score 3": "3",
       },
       { name: "rachel", place: "1st", "final score": "200" },
+      {
+        name: "catrina",
+        place: "0th",
+        "final score": "500",
+      },
     ],
   },
   {
@@ -43,9 +48,17 @@ export const events = [
 
 export const teams = [
   {
-    id: "",
-    totalscore: "",
-    competitors: [],
+    id: "TEAM1",
+    totalscore: "5",
+    name: "cool team",
+    competitors: [
+      {
+        name: "rachel",
+        "event 1": "longfist ",
+        "event 2": "straight-sword",
+        "score contribution": "9.50",
+      },
+    ],
   },
 ];
 

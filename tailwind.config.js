@@ -16,6 +16,22 @@ module.exports = {
       grotesksc: ["niveau-grotesk-small-caps", "sans-serif"],
     },
     extend: {
+      animation: {
+        text: "text 5s ease infinite",
+      },
+      keyframes: {
+        text: {
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center",
+          },
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center",
+          },
+        },
+      },
+
       scrollMargin: {
         96: "12rem",
       },
@@ -26,6 +42,9 @@ module.exports = {
         "lighter-blue": "#8BB8E8",
         "lightest-blue": "#DAEBFE",
         gold: "#FFD100",
+        "light-gold": "#ffda66",
+        "int-gold": "#ffd858",
+        "light-orange": "#ffa75e",
       },
       borderWidth: {
         2: "2px",
