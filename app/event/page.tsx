@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 export default function Event() {
   return (
-    <div className="text-lg animate-fade container py-2 px-7 my-10 overflow-hidden">
-      <Table />
+    <div className="lg:text-lg animate-fade container lg:py-2 px-7 my-3 lg:my-10 overflow-hidden">
+      {/* <Table /> */}
     </div>
   );
 }

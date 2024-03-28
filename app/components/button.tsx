@@ -5,7 +5,7 @@ const Button = () => {
   return (
     // <button>
     <Link href="/">
-      <Image src="/icon.svg" width={120} height={120} alt="logo" />
+      <Image src="/icon.svg" width={60} height={60} alt="logo" />
     </Link>
     //<div>Button</div>;
   );

@@ -1,12 +1,12 @@
-import EventS from "./components/event";
-import IndividualS from "./components/individual";
-import TeamS from "./components/team";
+import Header from "./components/header";
 
 export default function Home() {
   return (
     <>
-      <div className="text-lg animate-fade container py-2 px-7 my-10 overflow-hidden">
-        <>
+      <div className="lg:text-lg animate-fade container lg:py-2 px-7 my-5 lg:my-10 overflow-hidden">
+        <Header />
+        <div className="text-slate-300">
+          <div className="h-1"></div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc euismod,
           velit eget placerat gravida, felis nunc finibus tellus, molestie
           bibendum turpis magna ut ipsum. Integer eu nunc purus. Vivamus
@@ -62,7 +62,7 @@ export default function Home() {
           accumsan, dignissim diam nec, consequat nisl. Phasellus lorem sem,
           fermentum feugiat odio vel, varius suscipit elit. Sed volutpat nulla
           orci, at venenatis ipsum euismod in. Ut quis orci elit.
-        </>
+        </div>
       </div>
       {/* <TeamS />
       <EventS />

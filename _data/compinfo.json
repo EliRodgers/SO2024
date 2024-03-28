@@ -1,0 +1,18 @@
+{
+  "competitors": [
+    {
+      "id": 1,
+      "name": "Competitor 1",
+      "school": "UCLA",
+      "experience": "Beginner",
+      "gender": "Male"
+    },
+    {
+      "id": 2,
+      "name": "Competitor 2",
+      "school": "USC",
+      "experience": "Advanced",
+      "gender": "Female"
+    }
+  ]
+}

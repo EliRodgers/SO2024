@@ -3,37 +3,42 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import link from "next/link";
+import Button from "./button";
 
 const navLinks = [
-  { name: "Team Standings", href: "/team" },
-  { name: "Event Standings", href: "/event" },
-  { name: "Individual Scores", href: "/individual" },
+  { name: "Team", href: "/team" },
+  { name: "Event", href: "/event" },
+  { name: "Individual", href: "/individual" },
 ];
 
 const Navbar = () => {
   const pathname = usePathname();
   return (
-    <div className="grid grid-cols-3 font-grotesk tracking text-center uppercase">
-      {navLinks.map((link) => {
-        const isActive = pathname && pathname.startsWith(link.href);
-        // const isHome = pathname == "/";
-        return (
-          <>
-            <Link
-              href={link.href}
-              key={link.name}
-              className={
-                isActive
-                  ? "font-bold py-3 border-b bg-black bg-opacity-65 px-3 border-slate-500 border-r border-l border-b-gold"
-                  : // : "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-0 transition duration-300 ease-in-out hover:opacity-70"
-                    "bg-black bg-opacity-35 transition-all ease-in-out duration:300 delay-100 border-slate-500 hover:border-l hover:border-r hover:border-b-gold hover:font-bold text-slate-500 py-3 border-b hover:bg-blend-luminosity hover:bg-black hover:bg-opacity-65 hover:text-white px-3"
-              }
-            >
-              {link.name}
-            </Link>
-          </>
-        );
-      })}
+    <div className="flex flex-row">
+      <div className="bg-black bg-opacity-65 p-2 border-b border-slate-500">
+        <Button />
+      </div>
+      <div className="flex-auto text-sm lg:text-lg grid grid-cols-3 font-grotesk tracking text-center uppercase">
+        {navLinks.map((link) => {
+          const isActive = pathname && pathname.startsWith(link.href);
+          // const isHome = pathname == "/";
+          return (
+            <>
+              <Link
+                href={link.href}
+                key={link.name}
+                className={
+                  isActive
+                    ? "font-bold py-4 border-b bg-black bg-opacity-85 border-slate-500 border-r border-l border-b-gold"
+                    : "bg-black py-4 bg-opacity-65 transition-all ease-in-out duration:300 delay-100 border-slate-500 hover:border-l hover:border-r hover:border-b-gold hover:font-bold text-slate-500 border-b hover:bg-black hover:bg-opacity-85 hover:text-white"
+                }
+              >
+                {link.name}
+              </Link>
+            </>
+          );
+        })}
+      </div>
     </div>
   );
 };
