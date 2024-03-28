@@ -6,9 +6,9 @@ import link from "next/link";
 import Button from "./button";
 
 const navLinks = [
-  { name: "Team", href: "/team" },
-  { name: "Event", href: "/event" },
-  { name: "Individual", href: "/individual" },
+  { name: "Teams", href: "/teams" },
+  { name: "Events", href: "/events" },
+  { name: "Individuals", href: "/individuals" },
 ];
 
 const Navbar = () => {

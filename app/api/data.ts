@@ -18,9 +18,25 @@ export const competitors = [
 export const events = [
   {
     id: "AMA101",
+    name: "adult longfist",
     competitors: [
-      { name: "", place: "" },
-      { name: "", place: "" },
+      {
+        name: "henry",
+        place: "100th",
+        "final score": "100",
+        "score 1": "2",
+        "score 2": "2",
+        "score 3": "3",
+      },
+      { name: "rachel", place: "1st", "final score": "200" },
+    ],
+  },
+  {
+    id: "AMA102",
+    name: "adult straightsword",
+    competitors: [
+      { name: "trevor", place: "void", "final score": "100" },
+      { name: "justin", place: "-10th", "final score": "200" },
     ],
   },
 ];

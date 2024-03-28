@@ -10,13 +10,31 @@ async function getCompetitors() {
   return res.json();
 }
 
-const Table = ({ data, cols }: { data: any; cols: any }) => {
+const Table = ({ data, selectcolumns }: { data: any; selectcolumns: any }) => {
   // const competitors = await getCompetitors();
+
+  if (selectcolumns == undefined) {
+    selectcolumns = Object.keys(data[0]);
+  }
+  const allcolumns = Object.keys(data[0]); //THIS LINE GETS THE LEFT HAND SIDE STUFF IN THE JSON
+  const realcols = allcolumns.filter((col) => selectcolumns.includes(col));
+  const cols = [
+    ...realcols.map((key) => {
+      return {
+        field: key,
+        header: key,
+      };
+    }),
+
+    // { field: "name", header: "Name" },
+    // { field: "school", header: "School" },
+    // { field: "experience", header: "Experience" },
+  ];
 
   return (
     <table className="w-full mb-4">
       <thead>
-        <tr className="text-xl font-grotesksc border-b">
+        <tr className="capitalize text-xl font-grotesksc border-b">
           {cols.map((head: { header: ReactNode; field: any }) => (
             <th className="p-3 text-left">{head.header}</th>
           ))}
@@ -56,33 +74,6 @@ const Table = ({ data, cols }: { data: any; cols: any }) => {
     //     );
     //   })}
     // </tbody>
-
-    // <table className="w-full border table-auto bg-black bg-opacity-35">
-    //   <thead className="border border-b-gold bg-black bg-opacity-30">
-    //     <tr>
-    //       <th className="p-2">Competitor</th>
-    //       <th>Experience</th>
-    //       <th>School</th>
-    //     </tr>
-    //   </thead>
-    //   <tbody>
-    //     <tr>
-    //       <td>A</td>
-    //       <td>1</td>
-    //       <td>X</td>
-    //     </tr>
-    //     <tr>
-    //       <td>B</td>
-    //       <td>2</td>
-    //       <td>Y</td>
-    //     </tr>
-    //     <tr>
-    //       <td>C</td>
-    //       <td>3</td>
-    //       <td>Z</td>
-    //     </tr>
-    //   </tbody>
-    // </table>
   );
 };
 
