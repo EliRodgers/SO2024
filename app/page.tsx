@@ -1,68 +1,38 @@
+import Link from "next/link";
+import { rings } from "./api/data";
 import Header from "./components/header";
+import Table from "./components/table";
 
 export default function Home() {
+  const mycolumns = ["event", "current", "up next", "on deck"];
   return (
     <>
       <div className="lg:text-lg animate-fade container lg:py-2 px-7 my-5 lg:my-10 overflow-hidden">
         <Header />
-        <div className="text-slate-300">
-          <div className="h-1"></div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc euismod,
-          velit eget placerat gravida, felis nunc finibus tellus, molestie
-          bibendum turpis magna ut ipsum. Integer eu nunc purus. Vivamus
-          tincidunt ullamcorper purus et tempor. In finibus viverra libero vitae
-          eleifend. Ut dignissim massa eget urna dictum finibus. Phasellus
-          consequat nisl non mattis ultrices. In a diam hendrerit, congue orci
-          vel, dapibus libero.
-          <div className="h-3"></div>
-          Suspendisse eget ligula eu mi bibendum tempus. Praesent ipsum lorem,
-          ultricies ac ipsum vel, venenatis gravida tellus. Sed at congue ipsum,
-          eu viverra ex. Praesent tincidunt, sem a vulputate mollis, eros nulla
-          facilisis urna, nec porta enim nisi eu erat. Ut sem felis, tempus
-          molestie sapien at, pretium convallis sem. Integer at tincidunt risus,
-          in pellentesque mauris. Maecenas ut ligula quis purus commodo
-          vulputate sit amet at odio. Praesent at neque et est viverra cursus.
-          Aliquam vel enim et tortor facilisis lacinia. Pellentesque commodo
-          ligula at nibh rhoncus pharetra. Curabitur lacinia viverra velit sit
-          amet pretium. Aliquam mauris erat, molestie ultricies arcu bibendum,
-          vestibulum gravida erat.
-          <div className="h-3"></div>
-          Phasellus posuere tincidunt blandit. Nulla ut dui dapibus, mollis ante
-          at, mollis nibh. Ut sit amet turpis consequat, suscipit eros non,
-          commodo risus. Ut congue nunc tortor. Curabitur in nibh id augue
-          convallis rhoncus. Nulla lobortis odio et urna fringilla maximus.
-          Morbi vel ante lacus. Sed ac risus dictum, scelerisque leo ultrices,
-          euismod tortor. Duis a commodo felis, et placerat dui. Ut sapien arcu,
-          dictum ut cursus nec, volutpat eget erat. Nullam sodales convallis
-          ultrices. Nulla ultricies ornare eros id accumsan. In eu nibh
-          accumsan, dignissim diam nec, consequat nisl. Phasellus lorem sem,
-          fermentum feugiat odio vel, varius suscipit elit. Sed volutpat nulla
-          orci, at venenatis ipsum euismod in. Ut quis orci elit.
-          <div className="h-3"></div>
-          Suspendisse eget ligula eu mi bibendum tempus. Praesent ipsum lorem,
-          ultricies ac ipsum vel, venenatis gravida tellus. Sed at congue ipsum,
-          eu viverra ex. Praesent tincidunt, sem a vulputate mollis, eros nulla
-          facilisis urna, nec porta enim nisi eu erat. Ut sem felis, tempus
-          molestie sapien at, pretium convallis sem. Integer at tincidunt risus,
-          in pellentesque mauris. Maecenas ut ligula quis purus commodo
-          vulputate sit amet at odio. Praesent at neque et est viverra cursus.
-          Aliquam vel enim et tortor facilisis lacinia. Pellentesque commodo
-          ligula at nibh rhoncus pharetra. Curabitur lacinia viverra velit sit
-          amet pretium. Aliquam mauris erat, molestie ultricies arcu bibendum,
-          vestibulum gravida erat.
-          <div className="h-3"></div>
-          Phasellus posuere tincidunt blandit. Nulla ut dui dapibus, mollis ante
-          at, mollis nibh. Ut sit amet turpis consequat, suscipit eros non,
-          commodo risus. Ut congue nunc tortor. Curabitur in nibh id augue
-          convallis rhoncus. Nulla lobortis odio et urna fringilla maximus.
-          Morbi vel ante lacus. Sed ac risus dictum, scelerisque leo ultrices,
-          euismod tortor. Duis a commodo felis, et placerat dui. Ut sapien arcu,
-          dictum ut cursus nec, volutpat eget erat. Nullam sodales convallis
-          ultrices. Nulla ultricies ornare eros id accumsan. In eu nibh
-          accumsan, dignissim diam nec, consequat nisl. Phasellus lorem sem,
-          fermentum feugiat odio vel, varius suscipit elit. Sed volutpat nulla
-          orci, at venenatis ipsum euismod in. Ut quis orci elit.
+        <div className="text-slate-400 my-2 text-balanced text-right">
+          Welcome to the{" "}
+          {/* <a
+            className="font-bold underline decoration-1 text-slate-300 hover:text-bright-blue"
+            href="http://collegiatewushu.org/home.php"
+          > */}
+          <Link
+            href="http://collegiatewushu.org/home.php"
+            rel="noopener noreferrer"
+            target="_blank"
+            className="font-bold underline decoration-1 text-slate-300 hover:text-bright-blue"
+          >
+            25th Annual Collegiate Wushu Tournament
+          </Link>
+          {/* </a> */}, hosted by UCLA Club Wushu. View live scores here!
         </div>
+        {rings.map((ring) => (
+          <>
+            <div className="font-grotesksc text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
+              {ring.name}
+            </div>
+            <Table data={rings} selectcolumns={mycolumns} />
+          </>
+        ))}
       </div>
       {/* <TeamS />
       <EventS />

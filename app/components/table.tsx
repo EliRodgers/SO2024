@@ -1,14 +1,4 @@
-import { table } from "console";
-import Link from "next/link";
 import React, { ReactNode } from "react";
-import CompetitorList from "../competitors/CompetitorList";
-import { headers } from "next/headers";
-
-async function getCompetitors() {
-  const res = await fetch("http://localhost:4000/competitors");
-
-  return res.json();
-}
 
 const Table = ({ data, selectcolumns }: { data: any; selectcolumns: any }) => {
   // const competitors = await getCompetitors();

@@ -46,6 +46,33 @@ export const events = [
   },
 ];
 
+export const rings = [
+  {
+    id: "adv",
+    name: "Advanced",
+    event: "Changquan",
+    current: "rachel",
+    "up next": "jon",
+    "on deck": "jade",
+  },
+  {
+    id: "int",
+    name: "Intermediate",
+    event: "Changquan",
+    current: "rachel",
+    "up next": "jon",
+    "on deck": "jade",
+  },
+  {
+    id: "beg",
+    name: "Beginner",
+    event: "Changquan",
+    current: "rachel",
+    "up next": "jon",
+    "on deck": "jade",
+  },
+];
+
 export const teams = [
   {
     id: "TEAM1",

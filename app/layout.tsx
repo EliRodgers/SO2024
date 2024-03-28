@@ -22,6 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <link rel="icon" type="image/svg+xml" href="/public/favicon.ico" />
       <body className="font-grotesk overscroll-none animate-fade">
         <link rel="stylesheet" href="https://use.typekit.net/zao2vdq.css" />
         <div className="sticky top-0 backdrop-blur">

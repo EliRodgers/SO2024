@@ -70,9 +70,9 @@ const Header = () => {
         </div>
       </div> */}
       {/* <div className="justify-center items-center lg:col-span-6 p-2 lg:p-5"> */}
-      <div className="bg-gradient-to-r from-lightest-blue via-white to-lightest-blue bg-clip-text text-transparent text-center text-4xl tracking-wide lg:text-5xl font-bold font-grotesksc">
+      <div className="bg-gradient-to-r from-lightest-blue via-white to-lightest-blue bg-clip-text text-transparent text-center text-[2.5rem] leading-10 tracking-wide lg:text-5xl font-bold font-grotesksc">
         25th Annual Collegiate Wushu Tournament
-        <div className="my-2 text-lg bg-gradient-to-r from-int-gold via-orange-200 to-light-gold bg-clip-text text-transparent tracking-wide lg:text-xl font-bold italic font-grotesksc">
+        <div className="my-2 text-lg bg-gradient-to-r from-lighter-blue from-30% via-bright-blue to-lighter-blue to-70% bg-clip-text text-transparent tracking-wide lg:text-xl font-bold italic font-grotesksc">
           April 6, 2024 ⋆ Los Angeles, CA
         </div>
       </div>

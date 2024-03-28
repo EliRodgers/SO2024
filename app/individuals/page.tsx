@@ -1,7 +1,5 @@
 import { Metadata } from "next";
 import Table from "../components/table";
-import Link from "next/link";
-import CompetitorList from "../competitors/CompetitorList";
 import { competitors } from "../api/data";
 
 export const metadata: Metadata = {
@@ -30,6 +28,9 @@ const Individual = () => {
   return (
     // <div id="individual" className="scroll-mt-96">
     <div className="lg:text-lg animate-fade container lg:py-2 px-7 my-3 lg:my-10 overflow-hidden">
+      <div className="font-grotesksc text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
+        competitors
+      </div>
       <Table data={competitors} selectcolumns={mycolumns} />
       {/* <Table headers={[]} data={competitors} /> */}
       {/* <CompetitorList /> */}
