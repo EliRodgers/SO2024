@@ -1,7 +1,7 @@
-import { competitors } from "./data";
+import { competitorsExample } from "./data";
 
 export async function GET() {
-  return Response.json(competitors);
+  return Response.json(competitorsExample);
 }
 
 export async function POST() {

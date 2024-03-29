@@ -1,15 +1,13 @@
 import { Metadata } from "next";
 import Table from "../components/table";
-import { competitors } from "../api/data";
-import { authorize, getCompetitorList } from "../api/sheets";
+import { getCompetitorList } from "../api/sheets";
 
 export const metadata: Metadata = {
   title: "Individual Scores",
 };
 
 const Individual = async () => {
-  const res = await authorize().then(getCompetitorList);
-  console.log(res);
+  const competitors = await getCompetitorList();
   let data: Array<any>;
   let cols: Array<any>;
   // const allcolumns = Object.keys(competitors[0]);

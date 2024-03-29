@@ -1,94 +1,115 @@
 const fs = require('fs').promises;
 const path = require('path');
 const process = require('process');
-const {authenticate} = require('@google-cloud/local-auth');
 const {google} = require('googleapis');
+import { sheets } from 'googleapis/build/src/apis/sheets';
+import {eventMap} from './utils';
 
-// If modifying these scopes, delete token.json.
-const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
-// The file token.json stores the user's access and refresh tokens, and is
-// created automatically when the authorization flow completes for the first
-// time.
-const TOKEN_PATH = path.join(process.cwd(), 'token.json');
-const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
+// Sheets Authentication Environment Variables
+const ADMIN_SPREADSHEET_ID = process.env.ADMIN_SPREADSHEET_ID;
+const RING1_SPREADSHEET_ID = process.env.RING1_SPREADSHEET_ID;
+const RING2_SPREADSHEET_ID = process.env.RING2_SPREADSHEET_ID;
+const RING3_SPREADSHEET_ID = process.env.RING3_SPREADSHEET_ID;
+const SERVICE_ACCOUNT = process.env.SERVICE_ACCOUNT ?? '{}';
+const COMPETITORS_TAB = process.env.COMPETITORS_TAB;
+const SCHEDULE_TAB = process.env.SCHEDULE_TAB;
 
-/**
- * Reads previously authorized credentials from the save file.
- *
- * @return {Promise<OAuth2Client|null>}
- */
-async function loadSavedCredentialsIfExist() {
-  try {
-    const content = await fs.readFile(TOKEN_PATH);
-    const credentials = JSON.parse(content);
-    return google.auth.fromJSON(credentials);
-  } catch (err) {
-    return null;
-  }
+// Competitor Tab Headers
+const ID = 0;
+const FIRST_NAME = 1;
+const LAST_NAME = 2;
+const LEVEL = 3;
+const GENDER = 4;
+const SCHOOL = 6;
+const EVENT_START = 9;
+
+// Event Tab Headers
+const RING1 = 0;
+const RING2 = 1;
+const RING3 = 2;
+
+const experience = (level : string) => {
+    switch(level) {
+        case 'B':
+            return "Beginner"
+        case 'I':
+            return "Intermediate"
+        case 'A':
+            return "Advanced"
+    }
 }
 
-/**
- * Serializes credentials to a file compatible with GoogleAuth.fromJSON.
- *
- * @param {OAuth2Client} client
- * @return {Promise<void>}
- */
-async function saveCredentials(client: { credentials: { refresh_token: any; }; }) {
-  const content = await fs.readFile(CREDENTIALS_PATH);
-  const keys = JSON.parse(content);
-  const key = keys.installed || keys.web;
-  const payload = JSON.stringify({
-    type: 'authorized_user',
-    client_id: key.client_id,
-    client_secret: key.client_secret,
-    refresh_token: client.credentials.refresh_token,
-  });
-  await fs.writeFile(TOKEN_PATH, payload);
+const events = (competitor : string[]) => {
+    const eventCodes = competitor.splice(EVENT_START, competitor.length - EVENT_START + 1);
+    return eventCodes.map((eventCode) => (
+        eventMap.get(+eventCode)
+    ));
 }
 
-/**
- * Load or request or authorization to call APIs.
- *
- */
-export async function authorize() {
-  let client = await loadSavedCredentialsIfExist();
-  if (client) {
-    return client;
-  }
-  client = await authenticate({
-    scopes: SCOPES,
-    keyfilePath: CREDENTIALS_PATH,
-  });
-  if (client.credentials) {
-    await saveCredentials(client);
-  }
-  return client;
+const createAuthClient = () => {
+    // Get JWT Token to access sheet
+    const service_account = JSON.parse(SERVICE_ACCOUNT);
+    const jwtClient = new google.auth.JWT(
+        service_account.client_email,
+        '',
+        service_account.private_key,
+        ['https://www.googleapis.com/auth/spreadsheets'],
+    );
+    jwtClient.authorize(function (err: any) {
+        if (err) {
+        throw err;
+        }
+    });
+    return jwtClient;
 }
 
-// @ts-ignore
-export async function getCompetitorList(auth) {
+export async function getCompetitorList() {
+    console.log("Fetcing competitor list.")
     try {
-        const sheets = google.sheets({ version: 'v4', auth});
+        const sheets = google.sheets({ version: 'v4'});
         const response = await sheets.spreadsheets.values.get({
-        spreadsheetId: process.env.ADMIN_SPREADSHEET_ID,
-        range: 'competitors', // sheet name
+            auth: createAuthClient(),
+            spreadsheetId: ADMIN_SPREADSHEET_ID,
+            range: COMPETITORS_TAB,
         });
-    
-        const rows = response.data.values;
-        return [];
-        // if (rows != null && rows.length) {
-        // return rows.map((row) => ({
-        //     title: row[2],
-        //     subtitle: row[3],
-        //     code: row[4],
-        //     browser: row[5],
-        //     short_name: row[17],
-        //     emojipedia_slug: row[18],
-        //     descriptions: row[19],
-        // }));
-        // }
+        const rows = response?.data.values;
+        if(!rows || rows.length == 0) {
+            console.log('Error: no data found');
+            return [];
+        }
+        rows.shift()
+        const competitors = rows.map((competitor : string[]) => (
+            {
+                id: competitor[ID],
+                name: competitor[FIRST_NAME] + " " + competitor[LAST_NAME],
+                experience: experience(competitor[LEVEL]),
+                gender: competitor[GENDER],
+                school: competitor[SCHOOL],
+                events: events(competitor)
+            }
+        ));
+        console.log("Successfully fetched competitor list.")
+        return competitors;
     } catch (err) {
         console.log(err);
     }
     return [];
+}
+
+export async function getEventOrder() {
+    try {
+        const sheets = google.sheets({ version: 'v4'});
+        const response = await sheets.spreadsheets.values.get({
+            auth: createAuthClient(),
+            spreadsheetId: process.env.ADMIN_SPREADSHEET_ID,
+            range: SCHEDULE_TAB + "!A2:C40", // sheet name
+            majorDimension: "COLUMNS"
+        });
+        const events = response?.data.values;
+        return events
+
+    } catch (err) {
+        console.log(err);
+    }
+    return []
 }
