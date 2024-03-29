@@ -1,65 +1,5 @@
 // CAN TRY AGAIN LATER - collapsible header upon scroll
-
-import Button from "./button";
-
-//"use client";
-// import React, { useState, useEffect } from "react";
-
-// const Header = () => {
-//   const [isScrolled, setIsScrolled] = useState(true);
-//   const [prevScrollPos, setPrevScrollPos] = useState(0);
-
-//   useEffect(() => {
-//     let animationFrameId: number;
-
-//     const handleScroll = () => {
-//       cancelAnimationFrame(animationFrameId);
-//       animationFrameId = requestAnimationFrame(() => {
-//         const currentScrollPos = window.scrollY;
-//         setIsScrolled(
-//           prevScrollPos > currentScrollPos || currentScrollPos === 0
-//         );
-//         setPrevScrollPos(currentScrollPos);
-//       });
-//     };
-
-//     window.addEventListener("scroll", handleScroll);
-//     return () => {
-//       cancelAnimationFrame(animationFrameId);
-//       window.removeEventListener("scroll", handleScroll);
-//     };
-//   }, [prevScrollPos]);
-
-//   return (
-//     <header
-//       className={`sticky top-0 left-0 w-full z-50 transition duration-300 ${
-//         isScrolled ? "bg-white shadow-md h-16" : "h-20 "
-//       }`}
-//     >
-//       <nav className="flex items-center justify-between py-4 px-8">
-//         <div>
-//           <a href="/" className="text-lg font-bold text-gray-800">
-//             My Website
-//           </a>
-//         </div>
-//         <div className="hidden md:block">
-//           {/* Add your navigation links here */}
-//           <a href="/" className="text-gray-600 hover:text-gray-800 mx-4">
-//             Home
-//           </a>
-//           <a href="/about" className="text-gray-600 hover:text-gray-800 mx-4">
-//             About
-//           </a>
-//           <a href="/contact" className="text-gray-600 hover:text-gray-800 mx-4">
-//             Contact
-//           </a>
-//         </div>
-//       </nav>
-//     </header>
-//   );
-// };
-
-// export default Header;
+import Image from "next/image";
 
 const Header = () => {
   return (
@@ -70,9 +10,14 @@ const Header = () => {
         </div>
       </div> */}
       {/* <div className="justify-center items-center lg:col-span-6 p-2 lg:p-5"> */}
-      <div className="lg:text-7xl bg-gradient-to-r from-lightest-blue via-white to-lightest-blue bg-clip-text text-transparent text-center text-[2.5rem] leading-10 tracking-wide font-bold font-grotesksc">
+      <div className="h-[20rem] mix-blend-multiply absolute -z-10 top-0 left-0 bg-gradient-to-t from-darkest-blue from-20% via-lightest-blue to-transparent md:h-[42rem] lg:h-[48.6rem] w-full" />
+      <div className="absolute -z-20 -top-[2.5rem] lg:-top-[18.3rem] left-0">
+        <Image src="/uclawushu.png" width={2200} height={200} alt="photo" />
+      </div>
+      {/* <div className="mt-[25rem] lg:text-8xl bg-gradient-to-r from-lightest-blue via-white to-lightest-blue bg-clip-text text-transparent text-[2.5rem] leading-10 font-bold font-grotesksc"> */}
+      <div className="lg:animate-fade mt-[7.2rem] md:mt-[25rem] lg:text-8xl text-[2.2rem] leading-[2.2rem] font-bold font-grotesksc">
         25th Annual Collegiate Wushu Tournament
-        <div className="lg:text-2xl my-2 text-lg bg-gradient-to-r from-lighter-blue from-30% via-bright-blue to-lighter-blue to-70% bg-clip-text text-transparent tracking-wide font-bold italic font-grotesksc">
+        <div className="lg:text-2xl text-base bg-gradient-to-r from-lighter-blue from-30% via-bright-blue to-lighter-blue to-70% bg-clip-text text-transparent font-bold italic font-grotesksc">
           April 6, 2024 ⋆ Los Angeles, CA
         </div>
       </div>

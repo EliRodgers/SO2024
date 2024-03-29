@@ -29,7 +29,7 @@ export default function RootLayout({
           <Navbar />
         </div>
         {children}
-        <footer className="py-5 border-t border-slate-500 bg-black bg-opacity-65 overflow-hidden">
+        <footer className="py-5 border-t border-gray-900 bg-black bg-opacity-65 overflow-hidden">
           <div className="inline-grid grid-flow-col gap-5 px-5">
             <div className="fill-current text-blue">
               <Link href="https://www.instagram.com/uclawushu/">

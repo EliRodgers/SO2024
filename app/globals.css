@@ -5,8 +5,7 @@
 
 :root {
     color-scheme: dark;
-    background-image: url('/sitebackground.png');
+    /* background-image: url('/sitebackground.png'); */
+    background-color: #030506;
     scroll-behavior: smo;
 }
-
-/* background-color: #021824; */

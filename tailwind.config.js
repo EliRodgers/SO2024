@@ -35,6 +35,9 @@ module.exports = {
       borderWidth: {
         2: "2px",
       },
+      transitionProperty: {
+        height: "height",
+      },
       container: {
         center: true,
       },

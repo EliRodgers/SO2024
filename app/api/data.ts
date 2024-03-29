@@ -5,6 +5,14 @@ export const competitors = [
     school: "UCLA",
     experience: "Beginner",
     gender: "Male",
+    events: [
+      {
+        name: "straightsword",
+      },
+      {
+        name: "longfist",
+      },
+    ],
   },
   {
     id: 2,
