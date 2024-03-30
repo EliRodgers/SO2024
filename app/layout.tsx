@@ -5,7 +5,6 @@ import Link from "next/link";
 import Navbar from "./components/navbar";
 import Button from "./components/button";
 import Image from "next/image";
-// import Header from "./components/header";
 
 export const metadata: Metadata = {
   title: {

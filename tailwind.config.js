@@ -31,6 +31,12 @@ module.exports = {
         "light-gold": "#ffda66",
         "int-gold": "#ffd858",
         "light-orange": "#ffa75e",
+        "jordy-blue-light": "#A2D3FA",
+        "jordy-blue": "#78ACDB",
+        "jordy-blue-dark": "#598ec3",
+        "jordy-blue-darker": "#3B6FA9",
+        almond: "#F3DED1",
+        "almond-light": "#FEF4ED",
       },
       borderWidth: {
         2: "2px",

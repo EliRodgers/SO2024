@@ -9,6 +9,7 @@ export default function Home() {
   return (
     <>
       {/* <Modal /> */}
+      {/* <div className="absolute top-[50rem] bg-almond -z-10 h-[32rem] w-full"></div> */}
       <div className="lg:text-lg container lg:py-2 px-7 my-5 lg:my-10 overflow-hidden">
         <Header />
         <div className="text-slate-400 my-5 text-sm lg:text-base text-balanced text-right">

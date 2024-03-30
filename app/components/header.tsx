@@ -10,9 +10,16 @@ const Header = () => {
         </div>
       </div> */}
       {/* <div className="justify-center items-center lg:col-span-6 p-2 lg:p-5"> */}
-      <div className="h-[20rem] mix-blend-multiply absolute -z-10 top-0 left-0 bg-gradient-to-t from-darkest-blue from-20% via-lightest-blue to-transparent md:h-[42rem] lg:h-[48.6rem] w-full" />
+      {/* <div className="h-[20rem] mix-blend-multiply absolute -z-10 top-0 left-0 bg-gradient-to-t from-darkest-blue from-20% via-lightest-blue to-transparent md:h-[42rem] lg:h-[48.6rem] w-full" /> */}
       <div className="absolute -z-20 -top-[2.5rem] lg:-top-[18.3rem] left-0">
-        <Image src="/uclawushu.png" width={2200} height={200} alt="photo" />
+        <Image
+          src="/uclawushug.png"
+          width={0}
+          height={0}
+          sizes="100vw"
+          style={{ width: "100%", height: "auto" }}
+          alt="photo"
+        />
       </div>
       {/* <div className="mt-[25rem] lg:text-8xl bg-gradient-to-r from-lightest-blue via-white to-lightest-blue bg-clip-text text-transparent text-[2.5rem] leading-10 font-bold font-grotesksc"> */}
       <div className="lg:animate-fade mt-[7.2rem] md:mt-[25rem] lg:text-8xl text-[2.2rem] leading-[2.2rem] font-bold font-grotesksc">
