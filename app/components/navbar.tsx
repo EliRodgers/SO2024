@@ -93,7 +93,7 @@ const Navbar = () => {
                   key={link.name}
                   className={
                     isActive
-                      ? "font-bold py-4 lg:py-6 border-b bg-gray-900 bg-opacity-65 border-gray-800 border-opacity-65 border-b-gold"
+                      ? "font-bold py-4 lg:py-6 border-b bg-gray-900 bg-opacity-65 border-gray-800 border-opacity-65 border-b-light-gold "
                       : "bg-gray-900 py-4 lg:py-6 bg-opacity-65 transition-all ease-in-out duration:300 delay-100 border-slate-500 hover:border-b-light-gold hover:font-bold text-slate-500 border-b hover:text-white"
                   }
                 >
