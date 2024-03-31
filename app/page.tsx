@@ -6,6 +6,8 @@ import Table from "./components/table";
 
 export default function Home() {
   const mycolumns = ["event", "current", "up next", "on deck"];
+  const query = "";
+  const currentPage = 0;
   return (
     <>
       {/* <Modal /> */}
@@ -29,7 +31,12 @@ export default function Home() {
             <div className="font-grotesksc lg:text-5xl text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
               {ring.name}
             </div>
-            <Table data={rings} selectcolumns={mycolumns} />
+            <Table
+              data={rings}
+              selectcolumns={mycolumns}
+              query={query}
+              currentPage={currentPage}
+            />
           </div>
         ))}
       </div>

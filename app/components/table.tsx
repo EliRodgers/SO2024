@@ -1,6 +1,16 @@
 import React, { ReactNode } from "react";
 
-const Table = ({ data, selectcolumns }: { data: any; selectcolumns: any }) => {
+const Table = ({
+  data,
+  selectcolumns,
+  query,
+  currentPage,
+}: {
+  data: any;
+  selectcolumns: any;
+  query: string;
+  currentPage: number;
+}) => {
   // const competitors = await getCompetitors();
 
   if (selectcolumns == undefined) {
@@ -20,6 +30,15 @@ const Table = ({ data, selectcolumns }: { data: any; selectcolumns: any }) => {
     // { field: "school", header: "School" },
     // { field: "experience", header: "Experience" },
   ];
+  // const finalcols = realcols.filter((col) => cols.includes(query));
+
+  // Filter data based on the query string
+  // TRY TO FIX by removing object.values and .some
+  const filteredData = data.filter((row: any) =>
+    Object.values(row).some((value: any) =>
+      String(value).toLowerCase().includes(query.toLowerCase())
+    )
+  );
 
   return (
     <table className="w-full mb-4 lg:mb-8">
@@ -31,7 +50,7 @@ const Table = ({ data, selectcolumns }: { data: any; selectcolumns: any }) => {
         </tr>
       </thead>
       <tbody>
-        {data.map(
+        {filteredData.map(
           (row: {
             gender: ReactNode;
             experience: ReactNode;
