@@ -143,9 +143,12 @@ export async function getCurrentEvents(rings : string[][]) {
             return events.find((event) => !isEventDone(allEventsWithCompetitors.get(event)))
         })
 
-        const nextCompetitors = currentEvents.map((event) => (
-            getNextThreeCompetitors(allEventsWithCompetitors.get(event))
-        ))
+        const nextCompetitors = currentEvents.map((event) => {
+            if (event === undefined) {
+                return []
+            }
+            return getNextThreeCompetitors(allEventsWithCompetitors.get(event))
+        })
 
         const currentEventsWithNextCompetitors = currentEvents.map((event, index) => (
             {

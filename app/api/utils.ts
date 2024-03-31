@@ -28,6 +28,10 @@ export const eventMap = new Map<number, string>([
 ])
 
 export const getEventName = (eventId : string) => {
+    if (eventId === undefined || eventId.length != 6) {
+        return ""
+    }
+
     const levelCode = eventId[0]
     const genderCode = eventId[1]
     const eventCode = eventId.slice(3)

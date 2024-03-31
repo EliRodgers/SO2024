@@ -7,8 +7,7 @@ import { getRingSchedules } from "./api/sheets";
 import { getEventName } from "./api/utils";
 
 export default async function Home() {
-  // const rings = await getRingSchedules();
-  const rings = [["AFA101"], ["IFA101"], ["BMA102", "BFA201"]]
+  const rings = await getRingSchedules();
   const currentEvents = await getCurrentEvents(rings);
   const mycolumns = ["event", "current", "up next", "on deck"];
   return (
@@ -31,14 +30,18 @@ export default async function Home() {
           </Link>
           {/* </a> */}, hosted by UCLA Club Wushu. View live scores here!
         </div>
-        {currentEvents.map((ring, index) => (
+        {currentEvents.map((ring, index) => {
+          if (ring.eventId === undefined) {
+            return (<></>)
+          }
+          return (
           <>
             <div className="font-grotesksc text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
               {getEventName(ring.eventId)}
             </div>
-            <Table data={currentEvents} selectcolumns={mycolumns} />
-          </>
-        ))}
+            <Table data={[currentEvents[index]]} selectcolumns={mycolumns} />
+          </>)
+        })}
       </div>
       {/* <TeamS />
       <EventS />
