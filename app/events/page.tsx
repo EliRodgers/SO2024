@@ -25,12 +25,14 @@ const Event = async () => {
             <div className="font-grotesksc text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold h-auto">
               {getEventName(event)}
             </div>
+            <div>
               {//@ts-ignore
               eventsWithCompetitors?.get(event).map((competitor : any) => (
                 <div>
                   {competitor.name}
                 </div>
               ))}
+            </div>
           </>
         ))}
         </>

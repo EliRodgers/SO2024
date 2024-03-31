@@ -28,58 +28,48 @@ const SCORE3 = 11;
 const SCORE4 = 12;
 const SCORE5 = 13;
 
-async function getEventCompetitors(event : string, ring : number) {
-    try { 
-        const sheets = google.sheets({ version: 'v4'});
-        let sheetId = "";
-        switch(ring) {
-            case RING1:
-                sheetId = RING1_SPREADSHEET_ID
-                break;
-            case RING2:
-                sheetId = RING2_SPREADSHEET_ID
-                break;
-            case RING3:
-                sheetId = RING3_SPREADSHEET_ID
-                break;
-            default:
-                throw new Error("Invalid Ring ID")
-        }
-        const response = await sheets.spreadsheets.values.get({
-            auth: createAuthClient(),
-            spreadsheetId: sheetId,
-            range: event + "!A3:T40", // sheet name
-        });
-        const rows = response?.data.values
-        const competitors = rows.map((competitor : string[]) => (
-            {
-                id: competitor[ID],
-                name: competitor[FIRST_NAME] + " " + competitor[LAST_NAME],
-                school: competitor[SCHOOL],
-                team: competitor[TEAM], 
-                place: competitor[PLACE],
-                final_score: competitor[FINAL_SCORE],
-                time: competitor[TIME],
-                scores: [competitor[SCORE1], competitor[SCORE2], competitor[SCORE3], competitor[SCORE4], competitor[SCORE5]]
-            }
-        ))
-        return competitors
-    } catch (err) {
-        console.log(err);
+async function batchGetRingCompetitors(eventIds : string[], ring : number) {
+    const sheets = google.sheets({ version: 'v4'});
+    let sheetId = "";
+    switch(ring) {
+        case RING1:
+            sheetId = RING1_SPREADSHEET_ID
+            break;
+        case RING2:
+            sheetId = RING2_SPREADSHEET_ID
+            break;
+        case RING3:
+            sheetId = RING3_SPREADSHEET_ID
+            break;
+        default:
+            throw new Error("Invalid Ring ID")
     }
-}
-
-async function getRingCompetitors(eventIds : string[], ring : number) {
-    const eventsWithCompetitorsPromises = 
-        eventIds.map(async (event) => {
-            return await getEventCompetitors(event, ring)
-        })
-    let eventsWithCompetitors = new Map<string, string[]>();
-    await Promise.allSettled(eventsWithCompetitorsPromises).then((events) => {
-        events.map((event, index) => {
-            //@ts-ignore
-            eventsWithCompetitors.set(eventIds[index], event.value)
-        })
+    const eventRanges = eventIds.map((eventId) => {
+        return eventId + "!A3:T40"
+    })
+    const response = await sheets.spreadsheets.values.batchGet({
+        auth: createAuthClient(),
+        spreadsheetId: sheetId,
+        ranges: eventRanges, //sheet names
+    });
+    const eventsWithCompetitorsObjects = response?.data.valueRanges;
+    const eventsWithCompetitors = new Map<string, string[]>();
+    eventIds.forEach((eventId, index) => {
+        eventsWithCompetitors.set(
+            eventId, 
+            eventsWithCompetitorsObjects[index].values.map((competitor : string[]) => (
+                {
+                    id: competitor[ID],
+                    name: competitor[FIRST_NAME] + " " + competitor[LAST_NAME],
+                    school: competitor[SCHOOL],
+                    team: competitor[TEAM], 
+                    place: competitor[PLACE],
+                    final_score: competitor[FINAL_SCORE],
+                    time: competitor[TIME],
+                    scores: [competitor[SCORE1], competitor[SCORE2], competitor[SCORE3], competitor[SCORE4], competitor[SCORE5]]
+                }
+            ))
+        )
     })
     return eventsWithCompetitors
 }
@@ -87,7 +77,7 @@ async function getRingCompetitors(eventIds : string[], ring : number) {
 export async function getAllEventCompetitors(rings : string[][]) {
     try {
         const ringsWithCompetitorsPromises = rings.map(async (events, index) => {
-            return await getRingCompetitors(events, index)
+            return await batchGetRingCompetitors(events, index)
         })
         let allEventsWithCompetitors = new Map<string, string[]>();
         await Promise.allSettled(ringsWithCompetitorsPromises).then((rings) => {
