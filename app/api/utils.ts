@@ -25,5 +25,41 @@ export const eventMap = new Map<number, string>([
     [361, "Internal Open Fist"],
     [381, "Internal Open Weapon"],
     [901, "Group Set"]
-  
 ])
+
+export const getEventName = (eventId : string) => {
+    const levelCode = eventId[0]
+    const genderCode = eventId[1]
+    const eventCode = eventId.slice(3)
+    
+    let level = ""
+    switch (levelCode) {
+        case "A":
+            level = "Advanced"
+            break;
+        case "I":
+            level = "Intermediate"
+            break;
+        case "B":
+            level = "Beginner"
+            break;
+        case "N":
+        default:
+    }
+
+    let gender = ""
+    switch (genderCode) {
+        case "M":
+            gender = "Male"
+            break;
+        case "F":
+            gender = "Female"
+            break;
+        case "N":
+        default:
+    }
+
+    let event = eventMap.get(+eventCode)
+
+    return [level, gender, event].join(" ")
+}

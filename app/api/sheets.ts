@@ -2,17 +2,13 @@ const fs = require('fs').promises;
 const path = require('path');
 const process = require('process');
 const {google} = require('googleapis');
-import { sheets } from 'googleapis/build/src/apis/sheets';
 import {eventMap} from './utils';
 
 // Sheets Authentication Environment Variables
 const ADMIN_SPREADSHEET_ID = process.env.ADMIN_SPREADSHEET_ID;
-const RING1_SPREADSHEET_ID = process.env.RING1_SPREADSHEET_ID;
-const RING2_SPREADSHEET_ID = process.env.RING2_SPREADSHEET_ID;
-const RING3_SPREADSHEET_ID = process.env.RING3_SPREADSHEET_ID;
-const SERVICE_ACCOUNT = process.env.SERVICE_ACCOUNT ?? '{}';
 const COMPETITORS_TAB = process.env.COMPETITORS_TAB;
 const SCHEDULE_TAB = process.env.SCHEDULE_TAB;
+const SERVICE_ACCOUNT = process.env.SERVICE_ACCOUNT;
 
 // Competitor Tab Headers
 const ID = 0;
@@ -23,10 +19,11 @@ const GENDER = 4;
 const SCHOOL = 6;
 const EVENT_START = 9;
 
-// Event Tab Headers
+// Schedule Tab Headers
 const RING1 = 0;
 const RING2 = 1;
 const RING3 = 2;
+
 
 const experience = (level : string) => {
     switch(level) {
@@ -46,7 +43,7 @@ const events = (competitor : string[]) => {
     ));
 }
 
-const createAuthClient = () => {
+export const createAuthClient = () => {
     // Get JWT Token to access sheet
     const service_account = JSON.parse(SERVICE_ACCOUNT);
     const jwtClient = new google.auth.JWT(
@@ -96,7 +93,7 @@ export async function getCompetitorList() {
     return [];
 }
 
-export async function getEventOrder() {
+export async function getRingSchedules() {
     try {
         const sheets = google.sheets({ version: 'v4'});
         const response = await sheets.spreadsheets.values.get({
