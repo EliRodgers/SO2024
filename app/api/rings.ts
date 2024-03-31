@@ -30,6 +30,14 @@ const SCORE3 = 11;
 const SCORE4 = 12;
 const SCORE5 = 13;
 
+// Groupset Tab Headers
+const GROUPSET_ID = 0;
+const GROUPSET_TEAM = 1;
+const GROUPSET_PLACE = 2;
+const GROUPSET_FINAL_SCORE = 3;
+const GROUPSET_TIME = 4;
+const GROUPSET_EVENT_ID = "NAN901";
+
 async function batchGetRingCompetitors(eventIds : string[], ring : number) {
     const sheets = google.sheets({ version: 'v4'});
     let sheetId = "";
@@ -57,25 +65,42 @@ async function batchGetRingCompetitors(eventIds : string[], ring : number) {
     const eventsWithCompetitorsObjects = response?.data.valueRanges;
     const eventsWithCompetitors = new Map<string, string[]>();
     eventIds.forEach((eventId, index) => {
-        eventsWithCompetitors.set(
-            eventId, 
-            eventsWithCompetitorsObjects[index].values.map((competitor : string[]) => (
-                {
-                    id: competitor[ID],
-                    name: competitor[FIRST_NAME] + " " + competitor[LAST_NAME],
-                    school: competitor[SCHOOL],
-                    team: competitor[TEAM], 
-                    place: competitor[PLACE],
-                    final_score: competitor[FINAL_SCORE],
-                    time: competitor[TIME],
-                    scores: [competitor[SCORE1], competitor[SCORE2], competitor[SCORE3], competitor[SCORE4], competitor[SCORE5]]
-                }
-            ))
-        )
+        if (eventId === GROUPSET_EVENT_ID) {
+            eventsWithCompetitors.set(
+                eventId,
+                eventsWithCompetitorsObjects[index].values.map((competitor : string[]) => (
+                    {
+                        id: competitor[GROUPSET_ID],
+                        name: competitor[GROUPSET_TEAM],
+                        place: competitor[GROUPSET_PLACE],
+                        "final score": competitor[GROUPSET_FINAL_SCORE],
+                        time: competitor[GROUPSET_TIME],
+                    }
+                ))
+            )
+        }
+        else {
+            eventsWithCompetitors.set(
+                eventId, 
+                eventsWithCompetitorsObjects[index].values.map((competitor : string[]) => (
+                    {
+                        id: competitor[ID],
+                        name: competitor[FIRST_NAME] + " " + competitor[LAST_NAME],
+                        school: competitor[SCHOOL],
+                        team: competitor[TEAM], 
+                        place: competitor[PLACE],
+                        "final score": competitor[FINAL_SCORE],
+                        time: competitor[TIME],
+                        scores: [competitor[SCORE1], competitor[SCORE2], competitor[SCORE3], competitor[SCORE4], competitor[SCORE5]]
+                    }
+                ))
+            )
+        }
     })
     return eventsWithCompetitors
 }
 
+// TODO: Name this better
 export async function getAllEventCompetitors(rings : string[][]) {
     try {
         const ringsWithCompetitorsPromises = rings.map(async (events, index) => {
@@ -96,8 +121,9 @@ export async function getAllEventCompetitors(rings : string[][]) {
     }
 }
 
-// Make types for competitors
+// TODO: Make types for competitors
 function isEventDone(competitorList : any) {
+    // TODO: Surely this can be written better bro
     if (competitorList.find((competitor : any) => {
         return competitor.final_score === undefined || competitor.final_score === "#NAME?"
     }) === undefined) {
@@ -106,7 +132,7 @@ function isEventDone(competitorList : any) {
     return false
 }
 
-// Need typing LOL
+// TODO: Need typing LOL
 function getNextThreeCompetitors(competitorList : any[]) {
     let nextThreeCompetitors = []
     let n = 3
@@ -123,7 +149,7 @@ function getNextThreeCompetitors(competitorList : any[]) {
     return nextThreeCompetitors
 }
 
-// Probably want to get all events from one call when we first get to the site
+// TODO: Probably want to get all events from one call when we first get to the site
 export async function getCurrentEvents(rings : string[][]) {
     try {
         const ringsWithCompetitorsPromises = rings.map(async (events, index) => {
