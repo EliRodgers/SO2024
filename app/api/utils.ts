@@ -28,6 +28,7 @@ export const eventMap = new Map<number, string>([
 ])
 
 export const getEventName = (eventId : string) => {
+    // Skip invalid eventIDs
     if (eventId === undefined || eventId.length != 6) {
         return ""
     }

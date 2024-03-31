@@ -12,14 +12,6 @@ export const metadata: Metadata = {
   title: "Event Standings",
 };
 
-// export default function Event({
-//   searchParams,
-// }: {
-//   searchParams?: {
-//     query?: string;
-//     page?: string;
-//   };
-// }) {
 export default async function Event ({
   searchParams,
 }: {
@@ -33,7 +25,6 @@ export default async function Event ({
   const mycolumns = ["name", "place", "final score"];
   const query = searchParams?.query || "";
   const currentPage = Number(searchParams?.page) || 1;
-  // console.log(events);
   return (
     <div className="lg:text-lg animate-fade container lg:py-2 px-7 my-3 lg:my-10 overflow-hidden">
       <div className="font-grotesk my-5 lg:mt-0">
@@ -43,7 +34,7 @@ export default async function Event ({
       {rings.map((events : string[], index : number) => (
         <>
         <div className="font-grotesksc text-5xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold h-auto">
-          {index > 1 ? "Ring 3" : index > 0 ? "Ring 2" : "Ring 1"}
+          {index > 1 ? "Ring 3" : index > 0 ? "Ring 2" : "Ring 1" /* TODO: Fix this shit man(readability) */} 
         </div>
         {events.map((event : string) => (
           <>
@@ -51,7 +42,7 @@ export default async function Event ({
               {getEventName(event)}
             </div>
             <Table
-              data={event}
+              data={eventsWithCompetitors?.get(event)}
               selectcolumns={mycolumns}
               query={query}
               currentPage={currentPage}
