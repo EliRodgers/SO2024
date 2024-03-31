@@ -1,10 +1,15 @@
 import Link from "next/link";
-import { rings } from "./api/data";
+import { currentEventsExample } from "./api/data";
 import Header from "./components/header";
 import Table from "./components/table";
 // import Modal from "./components/modal";
+import { getCurrentEvents } from "./api/rings";
+import { getRingSchedules } from "./api/sheets";
+import { getEventName } from "./api/utils";
 
-export default function Home() {
+export default async function Home() {
+  const rings = await getRingSchedules();
+  const currentEvents = await getCurrentEvents(rings);
   const mycolumns = ["event", "current", "up next", "on deck"];
   const query = "";
   const currentPage = 0;
@@ -26,19 +31,22 @@ export default function Home() {
           </Link>
           {/* </a> */}, hosted by UCLA Club Wushu. View live scores here!
         </div>
-        {rings.map((ring) => (
-          <div className="animate-fade">
+        {currentEvents.map((ring, index) => {
+          if (ring.eventId === undefined) {
+            return (<></>)
+          }
+          return (
+          <>
             <div className="font-grotesksc lg:text-5xl text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
-              {ring.name}
+              {getEventName(ring.eventId)}
             </div>
-            <Table
-              data={rings}
-              selectcolumns={mycolumns}
+            <Table 
+              data={[currentEvents[index]]} 
+              selectcolumns={mycolumns} 
               query={query}
-              currentPage={currentPage}
-            />
-          </div>
-        ))}
+              currentPage={currentPage}/>
+          </>)
+        })}
       </div>
       {/* <TeamS />
       <EventS />

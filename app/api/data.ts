@@ -1,4 +1,4 @@
-export const competitors = [
+export const competitorsExample = [
   {
     id: 1,
     name: "Competitor 1",
@@ -23,7 +23,7 @@ export const competitors = [
   },
 ];
 
-export const events = [
+export const eventsExample = [
   {
     id: "AMA101",
     name: "adult longfist",
@@ -54,7 +54,7 @@ export const events = [
   },
 ];
 
-export const rings = [
+export const currentEventsExample = [
   {
     id: "adv",
     name: "Advanced",
@@ -81,7 +81,7 @@ export const rings = [
   },
 ];
 
-export const teams = [
+export const teamsExample = [
   {
     id: "TEAM1",
     totalscore: "5",

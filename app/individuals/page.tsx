@@ -1,24 +1,25 @@
 import { Metadata } from "next";
 import Table from "../components/table";
-import { competitors } from "../api/data";
 import SearchBar from "../components/searchbar";
 import { Suspense } from "react";
 import NotFound from "../components/not-found";
+import { getCompetitorList } from "../api/sheets";
 
 export const metadata: Metadata = {
   title: "Individual Scores",
 };
 
-export default function Individual({
+export default async function Individual({
   searchParams,
 }: {
   searchParams?: {
     query?: string;
     page?: string;
   };
-}) {
+}){
   const query = searchParams?.query || "";
   const currentPage = Number(searchParams?.page) || 1;
+  const competitors = await getCompetitorList();
 
   let data: Array<any>;
   let cols: Array<any>;
