@@ -1,4 +1,6 @@
+import { isUndefined } from "util";
 import { createAuthClient } from "./sheets";
+import next from "next";
 
 const fs = require('fs').promises;
 const path = require('path');
@@ -89,6 +91,71 @@ export async function getAllEventCompetitors(rings : string[][]) {
             })
         })
         return allEventsWithCompetitors
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+// Make types for competitors
+function isEventDone(competitorList : any) {
+    if (competitorList.find((competitor : any) => {
+        return competitor.final_score === undefined || competitor.final_score === "#NAME?"
+    }) === undefined) {
+        return true
+    }
+    return false
+}
+
+// Need typing LOL
+function getNextThreeCompetitors(competitorList : any[]) {
+    let nextThreeCompetitors = []
+    let n = 3
+    for (var i = 0; i < competitorList.length; i++) {
+        if (n === 0) {
+            break
+        }
+        if (competitorList[i].final_score === undefined || competitorList[i].final_score === "#NAME?") {
+            nextThreeCompetitors = [...nextThreeCompetitors, competitorList[i].name];
+            n = n - 1;
+        }
+    }
+
+    return nextThreeCompetitors
+}
+
+// Probably want to get all events from one call when we first get to the site
+export async function getCurrentEvents(rings : string[][]) {
+    try {
+        const ringsWithCompetitorsPromises = rings.map(async (events, index) => {
+            return await batchGetRingCompetitors(events, index)
+        })
+        let allEventsWithCompetitors = new Map<string, string[]>();
+        await Promise.allSettled(ringsWithCompetitorsPromises).then((rings) => {
+            rings.forEach((events) => {
+                //@ts-ignore
+                events.value.forEach((eventId, key) => {
+                    allEventsWithCompetitors.set(key, eventId)
+                })
+            })
+        })
+
+        const currentEvents = rings.map((events) => {
+            return events.find((event) => !isEventDone(allEventsWithCompetitors.get(event)))
+        })
+
+        const nextCompetitors = currentEvents.map((event) => (
+            getNextThreeCompetitors(allEventsWithCompetitors.get(event))
+        ))
+
+        const currentEventsWithNextCompetitors = currentEvents.map((event, index) => (
+            {
+                eventId: event,
+                current: nextCompetitors[index][0],
+                "up next": nextCompetitors[index][1],
+                "on deck": nextCompetitors[index][2]
+            }
+        ))
+        return currentEventsWithNextCompetitors
     } catch (err) {
         console.log(err);
     }

@@ -1,9 +1,15 @@
 import Link from "next/link";
-import { rings } from "./api/data";
+import { currentEventsExample } from "./api/data";
 import Header from "./components/header";
 import Table from "./components/table";
+import { getCurrentEvents } from "./api/rings";
+import { getRingSchedules } from "./api/sheets";
+import { getEventName } from "./api/utils";
 
-export default function Home() {
+export default async function Home() {
+  // const rings = await getRingSchedules();
+  const rings = [["AFA101"], ["IFA101"], ["BMA102", "BFA201"]]
+  const currentEvents = await getCurrentEvents(rings);
   const mycolumns = ["event", "current", "up next", "on deck"];
   return (
     <>
@@ -25,12 +31,12 @@ export default function Home() {
           </Link>
           {/* </a> */}, hosted by UCLA Club Wushu. View live scores here!
         </div>
-        {rings.map((ring) => (
+        {currentEvents.map((ring, index) => (
           <>
             <div className="font-grotesksc text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
-              {ring.name}
+              {getEventName(ring.eventId)}
             </div>
-            <Table data={rings} selectcolumns={mycolumns} />
+            <Table data={currentEvents} selectcolumns={mycolumns} />
           </>
         ))}
       </div>
