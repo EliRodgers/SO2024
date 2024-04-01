@@ -12,14 +12,14 @@ export const metadata: Metadata = {
   title: "Event Standings",
 };
 
-export default async function Event ({
+export default async function Event({
   searchParams,
 }: {
   searchParams?: {
     query?: string;
     page?: string;
   };
-}){
+}) {
   const rings = await getRingSchedules();
   const eventsWithCompetitors = await getAllEventCompetitors(rings);
   const mycolumns = ["name", "place", "final score"];
@@ -31,31 +31,38 @@ export default async function Event ({
         <SearchBar placeholder="Search competitors..." />
       </div>
       <Suspense key={query + currentPage} fallback={<NotFound />}></Suspense>
-      {rings.map((events : string[], index : number) => (
+      {rings.map((events: string[], index: number) => (
         <>
-        <div className="font-grotesksc text-5xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold h-auto">
-          {index > 1 ? "Ring 3" : index > 0 ? "Ring 2" : "Ring 1" /* TODO: Fix this shit man(readability) */} 
-        </div>
-        {events.map((event : string) => (
-          <>
-            <div className="lg:mb-2 lg:text-5xl font-grotesksc text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
-              {getEventName(event)}
-            </div>
-            <Table
-              data={eventsWithCompetitors?.get(event)}
-              selectcolumns={mycolumns}
-              query={query}
-              currentPage={currentPage}
-            />
-          </>
-        ))}
+          <div className="font-grotesksc text-5xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold h-auto">
+            {
+              index > 1
+                ? "Ring 3"
+                : index > 0
+                ? "Ring 2"
+                : "Ring 1" /* TODO: Fix this shit man(readability) */
+            }
+          </div>
+          {events.map((event: string) => (
+            <>
+              <div className="lg:mb-2 lg:text-5xl font-grotesksc text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
+                {getEventName(event)}
+              </div>
+              <Table
+                data={eventsWithCompetitors?.get(event)}
+                selectcolumns={mycolumns}
+                query={query}
+                currentPage={currentPage}
+              />
+            </>
+          ))}
         </>
       ))}
     </div>
   );
 }
 
-{/* <div className="font-grotesksc text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold h-auto">
+{
+  /* <div className="font-grotesksc text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold h-auto">
               {getEventName(event)}
             </div>
             <div>
@@ -65,4 +72,5 @@ export default async function Event ({
                   {competitor.name}
                 </div>
               ))}
-            </div> */}
+            </div> */
+}

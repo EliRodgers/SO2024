@@ -16,7 +16,7 @@ export default async function Individual({
     query?: string;
     page?: string;
   };
-}){
+}) {
   const query = searchParams?.query || "";
   const currentPage = Number(searchParams?.page) || 1;
   const competitors = await getCompetitorList();

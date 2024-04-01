@@ -41,12 +41,22 @@ const Table = ({
   );
 
   return (
-    <table className="w-full mb-4 lg:mb-8">
+    <table className="table-fixed w-full mb-4 lg:mb-8">
       <thead>
-        <tr className="lg:text-2xl capitalize text-lg font-grotesksc border-b">
-          {cols.map((head: { header: ReactNode; field: any }) => (
-            <th className="p-1 text-left">{head.header}</th>
-          ))}
+        <tr className="justify-between lg:text-2xl capitalize text-lg font-grotesksc border-b">
+          {cols.map((head: { header: ReactNode; field: any }) => {
+            // Check if any data exists for this column in the filteredData
+            const columnHasData = filteredData.some((row: any) =>
+              String(row[head.field as keyof typeof row])
+                .toLowerCase()
+                .includes(query.toLowerCase())
+            );
+            // Render the heading only if data exists for this column
+            if (columnHasData) {
+              return <th className="p-1 text-left">{head.header}</th>;
+            }
+            return null; // Render nothing if no data exists for this column
+          })}
         </tr>
       </thead>
       <tbody>
@@ -62,7 +72,7 @@ const Table = ({
             <tr>
               {cols.map((col: { field: any }) => (
                 <td className="lg:text-base text-sm text-slate-300 p-3 border-b border-slate-500">
-                  <div className="w-fit">
+                  <div className="w-full">
                     {row[col.field as keyof typeof row]}
                   </div>
                 </td>

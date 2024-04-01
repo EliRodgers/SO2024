@@ -31,26 +31,27 @@ export default async function Home() {
           </Link>
           {/* </a> */}, hosted by UCLA Club Wushu. View live scores here!
         </div>
-        {currentEvents.map((ring, index) => {
+        {currentEvents?.map((ring, index) => {
           if (ring.eventId === undefined) {
-            return (<></>)
+            return <></>;
           }
           return (
-          <>
-            <div className="font-grotesksc lg:text-5xl text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
-              {getEventName(ring.eventId)}
+            <div className="flex md:items-center flex-col lg:py-5 lg:flex-row">
+              <div className="font-grotesksc basis-1/4 lg:text-5xl text-2xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
+                {getEventName(ring.eventId)}
+              </div>
+              <div className=" basis-3/4">
+                <Table
+                  data={[currentEvents[index]]}
+                  selectcolumns={mycolumns}
+                  query={query}
+                  currentPage={currentPage}
+                />
+              </div>
             </div>
-            <Table 
-              data={[currentEvents[index]]} 
-              selectcolumns={mycolumns} 
-              query={query}
-              currentPage={currentPage}/>
-          </>)
+          );
         })}
       </div>
-      {/* <TeamS />
-      <EventS />
-      <IndividualS /> */}
     </>
   );
 }
