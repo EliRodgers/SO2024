@@ -34,12 +34,7 @@ export default function Team({
           <div className="lg:mb-2 lg:text-5xl font-grotesksc text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
             {team.name}
           </div>
-          <Table
-            data={team.competitors}
-            selectcolumns={undefined}
-            query={query}
-            currentPage={currentPage}
-          />
+          <Table data={team.competitors} selectcolumns={undefined} />
         </>
       ))}
     </div>

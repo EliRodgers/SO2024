@@ -1,3 +1,4 @@
+import head from "next/head";
 import React, { ReactNode } from "react";
 
 const Table = ({
@@ -46,19 +47,9 @@ const Table = ({
     <table className="table-fixed w-full mb-4 lg:mb-8">
       <thead>
         <tr className="justify-between lg:text-2xl capitalize text-lg font-grotesksc border-b">
-          {/* {cols.map((head: { header: ReactNode; field: any }) => {
-            // Check if any data exists for this column in the filteredData
-            const columnHasData = data.some((row: any) =>
-              String(row[head.field as keyof typeof row])
-                .toLowerCase()
-                .includes(query.toLowerCase())
-            );
-            // Render the heading only if data exists for this column
-            if (columnHasData) {
-              return <th className="p-1 text-left">{head.header}</th>;
-            }
-            return null; // Render nothing if no data exists for this column
-          })} */}
+          {cols.map((head: { header: ReactNode; field: any }) => (
+            <th className="p-1 text-left">{head.header}</th>
+          ))}
         </tr>
       </thead>
       <tbody>

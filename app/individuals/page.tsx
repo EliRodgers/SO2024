@@ -20,6 +20,15 @@ export default async function Individual({
   const query = searchParams?.query || "";
   const currentPage = Number(searchParams?.page) || 1;
   const competitors = await getCompetitorList();
+  const filteredCompetitors = competitors.filter((comp: any) =>
+    JSON.stringify(comp).toLowerCase().includes(query.toLowerCase())
+  );
+  console.log(filteredCompetitors);
+
+  const isEmptyArray = (arr: any[]) => {
+    if (arr === undefined) return true;
+    else return arr.length === 0;
+  };
 
   let data: Array<any>;
   let cols: Array<any>;
@@ -46,15 +55,13 @@ export default async function Individual({
         <div className="font-grotesk my-5 lg:mt-0">
           <SearchBar placeholder="Search competitors..." />
         </div>
-        <Suspense key={query + currentPage} fallback={<NotFound />}>
-          {/* <Table query={query} currentPage={currentPage} /> */}
-        </Suspense>
         competitors
       </div>
-      <Table data={competitors} selectcolumns={mycolumns} />
-      {/* <Table headers={[]} data={competitors} /> */}
-      {/* <CompetitorList /> */}
-      {/* </div> */}
+      {isEmptyArray(filteredCompetitors) ? (
+        <></>
+      ) : (
+        <Table data={filteredCompetitors} selectcolumns={mycolumns} />
+      )}
     </div>
   );
 }
