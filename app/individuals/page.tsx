@@ -51,12 +51,7 @@ export default async function Individual({
         </Suspense>
         competitors
       </div>
-      <Table
-        data={competitors}
-        selectcolumns={mycolumns}
-        query={query}
-        currentPage={currentPage}
-      />
+      <Table data={competitors} selectcolumns={mycolumns} />
       {/* <Table headers={[]} data={competitors} /> */}
       {/* <CompetitorList /> */}
       {/* </div> */}

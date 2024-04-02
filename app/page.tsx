@@ -44,8 +44,8 @@ export default async function Home() {
                 <Table
                   data={[currentEvents[index]]}
                   selectcolumns={mycolumns}
-                  query={query}
-                  currentPage={currentPage}
+                  // query={query}
+                  // currentPage={currentPage}
                 />
               </div>
             </div>
