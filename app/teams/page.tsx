@@ -5,12 +5,13 @@ import Table from "../components/table";
 import NotFound from "../components/not-found";
 import { Suspense } from "react";
 import SearchBar from "../components/searchbar";
+import { getTeams } from "../api/sheets";
 
 export const metadata: Metadata = {
   title: "Team Standings",
 };
 
-export default function Team({
+export default async function Team({
   searchParams,
 }: {
   searchParams?: {
@@ -20,6 +21,8 @@ export default function Team({
 }) {
   const query = searchParams?.query || "";
   const currentPage = Number(searchParams?.page) || 1;
+  const teams = await getTeams();
+  const mycolumns = ["name"];
 
   return (
     <div className="lg:text-lg animate-fade container lg:py-2 px-7 my-3 lg:my-10 overflow-hidden">
@@ -29,12 +32,12 @@ export default function Team({
       <Suspense key={query + currentPage} fallback={<NotFound />}>
         {/* <Table query={query} currentPage={currentPage} /> */}
       </Suspense>
-      {teamsExample.map((team) => (
+      {teams.map((team) => (
         <>
           <div className="lg:mb-2 lg:text-5xl font-grotesksc text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
             {team.name}
           </div>
-          <Table data={team.competitors} selectcolumns={undefined} />
+          <Table data={team.members} selectcolumns={mycolumns} />
         </>
       ))}
     </div>

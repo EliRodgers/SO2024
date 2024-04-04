@@ -1,4 +1,4 @@
-const fs = require('fs').promises;
+const fs = require('fs');
 const path = require('path');
 const process = require('process');
 const {google} = require('googleapis');
@@ -17,6 +17,7 @@ const LAST_NAME = 2;
 const LEVEL = 3;
 const GENDER = 4;
 const SCHOOL = 6;
+const TEAM = 7;
 const EVENT_START = 9;
 
 // Schedule Tab Headers
@@ -82,6 +83,7 @@ export async function getCompetitorList() {
                 experience: experience(competitor[LEVEL]),
                 gender: competitor[GENDER],
                 school: competitor[SCHOOL],
+                team: competitor[TEAM],
                 events: events(competitor)
             }
         ));
@@ -109,4 +111,52 @@ export async function getRingSchedules() {
         console.log(err);
     }
     return []
+}
+
+export async function getTeams() {
+    try {
+        const TEAMS_PATH = process.cwd() + "/app/teams/teams.json"
+        if (fs.existsSync(TEAMS_PATH)){
+            const teamsJSON = JSON.parse(fs.readFileSync(TEAMS_PATH, 'utf8'))
+            return teamsJSON
+        } else {
+            const competitors = await getCompetitorList();
+            const teams = new Map<string, any[]>();
+            competitors.forEach((competitor) => {
+                if (competitor.team != undefined) {
+                    if (competitor.team !== "") {
+                        const team = competitor.team
+                        if (teams.has(team)) {
+                            teams.set(team, [...teams.get(team), {id: competitor.id, name: competitor.name}])
+                        }
+                        else {
+                            teams.set(team, [{id: competitor.id, name: competitor.name}])
+                        }
+                    }
+                }
+            })
+            let teamsJSON = []
+            teams.forEach((value, key) => {
+                teamsJSON = [...teamsJSON, {name: key, members: value}]
+            })
+            fs.open(TEAMS_PATH, 'a', function(err, fd) { 
+                if(err) { 
+                    console.log('Cant open file'); 
+                }else { 
+                    fs.write(fd, JSON.stringify(teamsJSON),  
+                            null, function(err,writtenbytes) { 
+                                if(err) { 
+                                    console.log('Cant write to file'); 
+                                }else { 
+                                    console.log(writtenbytes + 
+                                        ' characters added to file'); 
+                                } 
+                            }) 
+                } 
+            }) 
+            return teams
+        }
+    } catch (err) {
+        console.log(err);
+    }
 }
