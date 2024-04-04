@@ -52,7 +52,9 @@ const Table = ({
       <thead>
         <tr className="justify-between lg:text-2xl capitalize text-lg font-grotesksc border-b">
           {cols.map((head: { header: ReactNode; field: any }) => (
-            <th className="p-1 text-left">{head.header}</th>
+            <th key={head.field} className="p-1 text-left">
+              {head.header}
+            </th>
           ))}
         </tr>
       </thead>
@@ -63,12 +65,15 @@ const Table = ({
             experience: ReactNode;
             school: ReactNode;
             name: ReactNode;
-            id: ReactNode;
+            id: any;
             row: any;
           }) => (
-            <tr>
+            <tr key={row.id}>
               {cols.map((col: { field: any }) => (
-                <td className="lg:text-base text-sm text-slate-300 p-3 border-b border-slate-500">
+                <td
+                  key={col.field}
+                  className="lg:text-base text-sm text-slate-300 p-3 border-b border-slate-500"
+                >
                   {row.id === undefined ? (
                     <div className="w-full">
                       {row[col.field as keyof typeof row]}
