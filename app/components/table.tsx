@@ -80,9 +80,12 @@ const Table = ({
                     </div>
                   ) : (
                     <div className="hover:underline">
-                      <Link href={`/${row.id}`} className="w-full">
+                      {/* <Link href={`/${row.id}`} className="w-full">
                         {row[col.field as keyof typeof row]}
-                      </Link>
+                      </Link> */}
+                      <div className="w-full">
+                        {row[col.field as keyof typeof row]}
+                      </div>
                     </div>
                   )}
                 </td>
