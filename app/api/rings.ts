@@ -125,7 +125,7 @@ export async function getAllEventCompetitors(rings : string[][]) {
 function isEventDone(competitorList : any) {
     // TODO: Surely this can be written better bro
     if (competitorList.find((competitor : any) => {
-        return competitor.final_score === undefined || competitor.final_score === "#NAME?"
+        return competitor['final score'] === undefined || competitor['final score'] === "#NAME?"
     }) === undefined) {
         return true
     }
@@ -140,12 +140,11 @@ function getNextThreeCompetitors(competitorList : any[]) {
         if (n === 0) {
             break
         }
-        if (competitorList[i].final_score === undefined || competitorList[i].final_score === "#NAME?") {
+        if (competitorList[i]['final score'] === undefined || competitorList[i]['final score'] === "#NAME?") {
             nextThreeCompetitors = [...nextThreeCompetitors, competitorList[i].name];
             n = n - 1;
         }
     }
-
     return nextThreeCompetitors
 }
 
@@ -168,7 +167,6 @@ export async function getCurrentEvents(rings : string[][]) {
         const currentEvents = rings.map((events) => {
             return events.find((event) => !isEventDone(allEventsWithCompetitors.get(event)))
         })
-
         const nextCompetitors = currentEvents.map((event) => {
             if (event === undefined) {
                 return []

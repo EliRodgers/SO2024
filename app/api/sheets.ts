@@ -1,4 +1,4 @@
-const fs = require('fs').promises;
+const fs = require('fs');
 const path = require('path');
 const process = require('process');
 const {google} = require('googleapis');
@@ -63,30 +63,45 @@ export const createAuthClient = () => {
 export async function getCompetitorList() {
     console.log("Fetcing competitor list.")
     try {
-        const sheets = google.sheets({ version: 'v4'});
-        const response = await sheets.spreadsheets.values.get({
-            auth: createAuthClient(),
-            spreadsheetId: ADMIN_SPREADSHEET_ID,
-            range: COMPETITORS_TAB,
-        });
-        const rows = response?.data.values;
-        if(!rows || rows.length == 0) {
-            console.log('Error: no data found');
-            return [];
-        }
-        rows.shift()
-        const competitors = rows.map((competitor : string[]) => (
-            {
-                id: competitor[ID],
-                name: competitor[FIRST_NAME] + " " + competitor[LAST_NAME],
-                experience: experience(competitor[LEVEL]),
-                gender: competitor[GENDER],
-                school: competitor[SCHOOL],
-                events: events(competitor)
+        const COMPETITOR_PATH = process.cwd() + "/app/localdata/competitors.json"
+        console.log(COMPETITOR_PATH)
+        const competitorListExists = fs.existsSync(COMPETITOR_PATH)
+        if (!competitorListExists) {
+            const sheets = google.sheets({ version: 'v4'});
+            const response = await sheets.spreadsheets.values.get({
+                auth: createAuthClient(),
+                spreadsheetId: ADMIN_SPREADSHEET_ID,
+                range: COMPETITORS_TAB,
+            });
+            const rows = response?.data.values;
+            if(!rows || rows.length == 0) {
+                console.log('Error: no data found');
+                return [];
             }
-        ));
-        console.log("Successfully fetched competitor list.")
-        return competitors;
+            rows.shift()
+            const competitors = rows.map((competitor : string[]) => (
+                {
+                    id: competitor[ID],
+                    name: competitor[FIRST_NAME] + " " + competitor[LAST_NAME],
+                    experience: experience(competitor[LEVEL]),
+                    gender: competitor[GENDER],
+                    school: competitor[SCHOOL],
+                    events: events(competitor)
+                }
+            ));
+
+            const jsonData = JSON.stringify(competitors)
+            fs.writeFile(COMPETITOR_PATH, jsonData, function(err : any) {
+                if (err) {
+                    console.log(err)
+                }
+            })
+            console.log("Successfully fetched competitor list from sheets.")
+            return competitors;
+        }
+        const competitorList = JSON.parse(fs.readFileSync(COMPETITOR_PATH, 'utf8'))
+        console.log("Successfully fetched competitor list from local")
+        return competitorList;
     } catch (err) {
         console.log(err);
     }
@@ -94,6 +109,24 @@ export async function getCompetitorList() {
 }
 
 export async function getRingSchedules() {
+    try {
+        const sheets = google.sheets({ version: 'v4'});
+        const response = await sheets.spreadsheets.values.get({
+            auth: createAuthClient(),
+            spreadsheetId: process.env.ADMIN_SPREADSHEET_ID,
+            range: SCHEDULE_TAB + "!A2:C40", // sheet name
+            majorDimension: "COLUMNS"
+        });
+        const events = response?.data.values;
+        return events
+
+    } catch (err) {
+        console.log(err);
+    }
+    return []
+}
+
+export async function getTeams() {
     try {
         const sheets = google.sheets({ version: 'v4'});
         const response = await sheets.spreadsheets.values.get({
