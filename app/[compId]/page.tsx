@@ -3,13 +3,21 @@ import Table from "../components/table";
 import { getCompetitorList } from "../api/sheets";
 // import Modal from "../components/modal";
 
+export async function generateStaticParams() {
+  const competitors = await getCompetitorList();
+
+  return competitors.map((comp: any) => ({
+    compId: comp.id,
+  }));
+}
+
 export default async function Individual({
   params,
 }: {
   params: { compId: number };
 }) {
   const competitors = await getCompetitorList();
-  //   console.log(competitors);
+  // console.log(competitors);
 
   const isEmptyArray = (arr: any[]) => {
     if (arr === undefined) return true;
