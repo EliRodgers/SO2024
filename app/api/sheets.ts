@@ -153,7 +153,7 @@ export const getTeams = cache(async () => {
     } else {
       const competitors = await getCompetitorList();
       const teams = new Map<string, any[]>();
-      competitors.forEach((competitor) => {
+      competitors.forEach((competitor: any) => {
         if (competitor.team != undefined) {
           if (competitor.team !== "") {
             const team = competitor.team;
