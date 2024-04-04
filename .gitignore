@@ -3,3 +3,6 @@
 .next/
 credentials.json
 .DS_Store
+node_modules
+.vscode
+/build
