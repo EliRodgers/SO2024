@@ -6,14 +6,14 @@ const Button = () => {
     // <button>
     <Link href="/">
       <Image
-        src="static/logobright.png"
+        src="../logobright.png"
         width={60}
         height={60}
         alt="logo"
         className="lg:hidden"
       />
       <Image
-        src="static/logobright.png"
+        src="../logobright.png"
         width={100}
         height={100}
         alt="logo"
