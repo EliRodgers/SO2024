@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { currentEventsExample } from "./api/data";
-import Header from "./components/header";
+import Header from "./header";
 import Table from "./components/table";
 // import Modal from "./components/modal";
 import { getCurrentEvents } from "./api/rings";
