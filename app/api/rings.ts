@@ -107,11 +107,7 @@ async function batchGetRingCompetitors(eventIds: string[], ring: number) {
 }
 
 // TODO: Name this better
-<<<<<<< HEAD
 export const getAllEventCompetitors = cache(async (rings: string[][]) => {
-=======
-export async function getAllEventCompetitors(rings: string[][]) {
->>>>>>> c3c1e3971686c88ddf46f1a41c65d368c3d3a225
   try {
     const ringsWithCompetitorsPromises = rings.map(async (events, index) => {
       return await batchGetRingCompetitors(events, index);
@@ -129,11 +125,7 @@ export async function getAllEventCompetitors(rings: string[][]) {
   } catch (err) {
     console.log(err);
   }
-<<<<<<< HEAD
 });
-=======
-}
->>>>>>> c3c1e3971686c88ddf46f1a41c65d368c3d3a225
 
 // TODO: Make types for competitors
 function isEventDone(competitorList: any) {
@@ -172,11 +164,7 @@ function getNextThreeCompetitors(competitorList: any[]) {
 }
 
 // TODO: Probably want to get all events from one call when we first get to the site
-<<<<<<< HEAD
 export const getCurrentEvents = cache(async (rings: string[][]) => {
-=======
-export async function getCurrentEvents(rings: string[][]) {
->>>>>>> c3c1e3971686c88ddf46f1a41c65d368c3d3a225
   try {
     const ringsWithCompetitorsPromises = rings.map(async (events, index) => {
       return await batchGetRingCompetitors(events, index);
@@ -216,8 +204,4 @@ export async function getCurrentEvents(rings: string[][]) {
   } catch (err) {
     console.log(err);
   }
-<<<<<<< HEAD
 });
-=======
-}
->>>>>>> c3c1e3971686c88ddf46f1a41c65d368c3d3a225
