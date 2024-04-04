@@ -1,6 +1,7 @@
 import { isUndefined } from "util";
 import { createAuthClient } from "./sheets";
 import next from "next";
+import { cache } from "react";
 
 const fs = require("fs").promises;
 const path = require("path");
@@ -106,7 +107,7 @@ async function batchGetRingCompetitors(eventIds: string[], ring: number) {
 }
 
 // TODO: Name this better
-export async function getAllEventCompetitors(rings: string[][]) {
+export const getAllEventCompetitors = cache(async (rings: string[][]) => {
   try {
     const ringsWithCompetitorsPromises = rings.map(async (events, index) => {
       return await batchGetRingCompetitors(events, index);
@@ -124,7 +125,7 @@ export async function getAllEventCompetitors(rings: string[][]) {
   } catch (err) {
     console.log(err);
   }
-}
+});
 
 // TODO: Make types for competitors
 function isEventDone(competitorList: any) {
@@ -163,7 +164,7 @@ function getNextThreeCompetitors(competitorList: any[]) {
 }
 
 // TODO: Probably want to get all events from one call when we first get to the site
-export async function getCurrentEvents(rings: string[][]) {
+export const getCurrentEvents = cache(async (rings: string[][]) => {
   try {
     const ringsWithCompetitorsPromises = rings.map(async (events, index) => {
       return await batchGetRingCompetitors(events, index);
@@ -203,4 +204,4 @@ export async function getCurrentEvents(rings: string[][]) {
   } catch (err) {
     console.log(err);
   }
-}
+});

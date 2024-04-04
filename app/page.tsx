@@ -7,6 +7,8 @@ import { getCurrentEvents } from "./api/rings";
 import { getRingSchedules } from "./api/sheets";
 import { getEventName } from "./api/utils";
 
+export const revalidate = 60; //revalidates cache every 10 seconds
+
 export default async function Home() {
   const rings = await getRingSchedules();
   const currentEvents = await getCurrentEvents(rings);

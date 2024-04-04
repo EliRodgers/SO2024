@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   title: "Event Standings",
 };
 
+export const revalidate = 60; //revalidates cache every 10 seconds
+
 export default async function Event({
   searchParams,
 }: {
