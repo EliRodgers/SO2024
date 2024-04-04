@@ -145,7 +145,6 @@ function getNextThreeCompetitors(competitorList : any[]) {
             n = n - 1;
         }
     }
-
     return nextThreeCompetitors
 }
 
