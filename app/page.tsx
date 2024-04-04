@@ -38,7 +38,10 @@ export default async function Home() {
             return <></>;
           }
           return (
-            <div className="flex md:items-center flex-col lg:py-5 lg:flex-row">
+            <div
+              key={ring.eventId}
+              className="flex md:items-center flex-col lg:py-5 lg:flex-row"
+            >
               <div className="font-grotesksc basis-1/4 lg:text-5xl text-2xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
                 {getEventName(ring.eventId)}
               </div>

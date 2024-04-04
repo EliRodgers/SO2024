@@ -48,7 +48,7 @@ export default async function Event({
     })
   );
 
-  console.log(eventsWithCompetitors);
+  // console.log(eventsWithCompetitors);
   // console.log(eventsWithCompetitors);
 
   // test.forEach((event: any) => {
@@ -93,7 +93,7 @@ export default async function Event({
             }
           </div>
           {events.map((event: string) => {
-            if (!isEmptyArray(filteredEventsWithCompetitors.get(event))) {
+            if (!isEmptyArray(filteredEventsWithCompetitors.get(event)!)) {
               return (
                 <>
                   {/* const result =
