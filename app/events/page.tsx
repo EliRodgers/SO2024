@@ -41,10 +41,14 @@ export default async function Event({
         });
       // console.log(filteredEventCompetitors);
 
-      filteredEventsWithCompetitors.set(event, filteredEventCompetitors);
+      filteredEventsWithCompetitors.set(
+        event,
+        filteredEventCompetitors as string[]
+      );
     })
   );
-  // console.log(filteredEventsWithCompetitors);
+
+  console.log(eventsWithCompetitors);
   // console.log(eventsWithCompetitors);
 
   // test.forEach((event: any) => {

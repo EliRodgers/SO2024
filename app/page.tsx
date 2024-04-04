@@ -29,7 +29,9 @@ export default async function Home() {
           >
             25th Annual Collegiate Wushu Tournament
           </Link>
-          {/* </a> */}, hosted by UCLA Club Wushu. View live scores here!
+          {/* </a> */}, hosted by UCLA Club Wushu. View live scores here!{" "}
+          <br></br>
+          <br></br>Click on competitor names to view more information.
         </div>
         {currentEvents?.map((ring, index) => {
           if (ring.eventId === undefined) {

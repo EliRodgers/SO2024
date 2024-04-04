@@ -4,6 +4,8 @@ import SearchBar from "../components/searchbar";
 import { Suspense } from "react";
 import NotFound from "../components/not-found";
 import { getCompetitorList } from "../api/sheets";
+import Link from "next/link";
+import Modal from "../components/modal";
 
 export const metadata: Metadata = {
   title: "Individual Scores",
@@ -23,7 +25,7 @@ export default async function Individual({
   const filteredCompetitors = competitors.filter((comp: any) =>
     JSON.stringify(comp).toLowerCase().includes(query.toLowerCase())
   );
-  console.log(filteredCompetitors);
+  // console.log(filteredCompetitors);
 
   const isEmptyArray = (arr: any[]) => {
     if (arr === undefined) return true;
@@ -50,19 +52,22 @@ export default async function Individual({
   // console.log(realcols);
   return (
     // <div id="individual" className="scroll-mt-96">
-    <div className="lg:text-lg animate-fade container lg:py-2 px-7 my-3 lg:my-10 overflow-hidden">
-      <div className="lg:mb-2 lg:text-5xl font-grotesksc text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
-        <div className="font-grotesk my-5 lg:mt-0">
-          <SearchBar placeholder="Search competitors..." />
+    <>
+      <Modal />
+      <div className="lg:text-lg animate-fade container lg:py-2 px-7 my-3 lg:my-10 overflow-hidden">
+        <div className="lg:mb-2 lg:text-5xl font-grotesksc text-3xl bg-gradient-to-r from-light-gold via-orange-200 to-int-gold bg-clip-text text-transparent font-bold">
+          <div className="font-grotesk my-5 lg:mt-0">
+            <SearchBar placeholder="Search competitors..." />
+          </div>
+          competitors
         </div>
-        competitors
+        {isEmptyArray(filteredCompetitors) ? (
+          <></>
+        ) : (
+          <Table data={filteredCompetitors} selectcolumns={mycolumns} />
+        )}
       </div>
-      {isEmptyArray(filteredCompetitors) ? (
-        <></>
-      ) : (
-        <Table data={filteredCompetitors} selectcolumns={mycolumns} />
-      )}
-    </div>
+    </>
   );
 }
 

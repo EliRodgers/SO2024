@@ -1,4 +1,5 @@
 import head from "next/head";
+import Link from "next/link";
 import React, { ReactNode } from "react";
 
 const Table = ({
@@ -33,6 +34,9 @@ const Table = ({
     // { field: "school", header: "School" },
     // { field: "experience", header: "Experience" },
   ];
+  //helped me understand how to access the ids
+  // const idList = data.map((competitor) => competitor.id);
+  // console.log(idList);
   // const finalcols = realcols.filter((col) => cols.includes(query));
 
   // Filter data based on the query string
@@ -65,9 +69,17 @@ const Table = ({
             <tr>
               {cols.map((col: { field: any }) => (
                 <td className="lg:text-base text-sm text-slate-300 p-3 border-b border-slate-500">
-                  <div className="w-full">
-                    {row[col.field as keyof typeof row]}
-                  </div>
+                  {row.id === undefined ? (
+                    <div className="w-full">
+                      {row[col.field as keyof typeof row]}
+                    </div>
+                  ) : (
+                    <div className="hover:underline">
+                      <Link href={`/${row.id}`} className="w-full">
+                        {row[col.field as keyof typeof row]}
+                      </Link>
+                    </div>
+                  )}
                 </td>
               ))}
             </tr>
