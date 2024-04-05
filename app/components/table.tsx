@@ -74,18 +74,18 @@ const Table = ({
                   key={col.field}
                   className="lg:text-base text-sm text-slate-300 p-3 border-b border-slate-500"
                 >
-                  {row.id === undefined ? (
+                  {row.id === undefined || col.field != "name" ? (
                     <div className="w-full">
                       {row[col.field as keyof typeof row]}
                     </div>
                   ) : (
                     <div className="hover:underline">
-                      {/* <Link href={`/${row.id}`} className="w-full">
+                      <Link href={`/${row.id}`} className="w-full">
                         {row[col.field as keyof typeof row]}
-                      </Link> */}
-                      <div className="w-full">
+                      </Link>
+                      {/* <div className="w-full">
                         {row[col.field as keyof typeof row]}
-                      </div>
+                      </div> */}
                     </div>
                   )}
                 </td>
