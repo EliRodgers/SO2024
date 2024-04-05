@@ -28,7 +28,7 @@ export default async function Team({
   const filteredTeams = teams.filter((team: any) =>
     JSON.stringify(team).toLowerCase().includes(query.toLowerCase())
   );
-  // console.log(test);
+  // console.log(teams[0].members);
   const mycolumns = ["name"];
 
   return (

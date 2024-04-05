@@ -33,7 +33,9 @@ export default async function Home() {
           </Link>
           {/* </a> */}, hosted by UCLA Club Wushu. View live scores here!{" "}
           <br></br>
-          <br></br>Click on competitor names to view more information.
+          <br></br>Competitor names in{" "}
+          <span className="text-light-gold"> gold</span> may be clicked for more
+          information.
         </div>
         {currentEvents?.map((ring, index) => {
           if (ring.eventId === undefined) {

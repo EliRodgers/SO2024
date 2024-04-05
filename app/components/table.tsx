@@ -79,7 +79,7 @@ const Table = ({
                       {row[col.field as keyof typeof row]}
                     </div>
                   ) : (
-                    <div className="hover:underline">
+                    <div className="hover:underline text-light-gold">
                       <Link href={`/${row.id}`} className="w-full">
                         {row[col.field as keyof typeof row]}
                       </Link>
