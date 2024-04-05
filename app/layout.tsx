@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   },
   description: "Collegiates scoreboard",
   openGraph: {
-    images: "/uclawushug.jpg",
+    images: "/opengraph-image.png",
   },
 };
 
