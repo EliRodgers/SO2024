@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     template: "%s | 25th Annual Collegiate Wushu Tournament",
   },
   description: "Collegiates scoreboard",
+  openGraph: {
+    images: "/uclawushug.jpg",
+  },
 };
 
 export default function RootLayout({
