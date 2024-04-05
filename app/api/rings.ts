@@ -133,8 +133,8 @@ function isEventDone(competitorList: any) {
   if (
     competitorList.find((competitor: any) => {
       return (
-        competitor.final_score === undefined ||
-        competitor.final_score === "#NAME?"
+        competitor['final score'] === undefined ||
+        competitor['final score'] === "#NAME?"
       );
     }) === undefined
   ) {
@@ -152,8 +152,8 @@ function getNextThreeCompetitors(competitorList: any[]) {
       break;
     }
     if (
-      competitorList[i].final_score === undefined ||
-      competitorList[i].final_score === "#NAME?"
+      competitorList[i]['final score'] === undefined ||
+      competitorList[i]['final score'] === "#NAME?"
     ) {
       nextThreeCompetitors = [...nextThreeCompetitors, competitorList[i].name];
       n = n - 1;
