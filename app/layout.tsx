@@ -7,6 +7,7 @@ import Button from "./button";
 import Image from "next/image";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://collegiates-scoreboard.vercel.app/"),
   title: {
     default: "25th Annual Collegiate Wushu Tournament",
     template: "%s | 25th Annual Collegiate Wushu Tournament",

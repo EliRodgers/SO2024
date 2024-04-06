@@ -35,7 +35,7 @@ export default async function Home() {
           <br></br>
           <br></br>Competitor names in{" "}
           <span className="text-light-gold"> gold</span> may be clicked for more
-          information.
+          information. Live scores can be found under the events tab.
         </div>
         {currentEvents?.map((ring, index) => {
           if (ring.eventId === undefined) {
