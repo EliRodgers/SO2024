@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Individual Scores",
 };
 
-export const revalidate = 180; //revalidates cache every 10 seconds
+export const revalidate = 180; //revalidates cache every 30 seconds
 
 export default async function Individual({
   searchParams,

@@ -39,72 +39,74 @@ const GROUPSET_FINAL_SCORE = 3;
 const GROUPSET_TIME = 4;
 const GROUPSET_EVENT_ID = "NAN901";
 
-async function batchGetRingCompetitors(eventIds: string[], ring: number) {
-  const sheets = google.sheets({ version: "v4" });
-  let sheetId = "";
-  switch (ring) {
-    case RING1:
-      sheetId = RING1_SPREADSHEET_ID;
-      break;
-    case RING2:
-      sheetId = RING2_SPREADSHEET_ID;
-      break;
-    case RING3:
-      sheetId = RING3_SPREADSHEET_ID;
-      break;
-    default:
-      throw new Error("Invalid Ring ID");
-  }
-  const eventRanges = eventIds.map((eventId) => {
-    return eventId + "!A3:T40";
-  });
-  const response = await sheets.spreadsheets.values.batchGet({
-    auth: createAuthClient(),
-    spreadsheetId: sheetId,
-    ranges: eventRanges, //sheet names
-  });
-  const eventsWithCompetitorsObjects = response?.data.valueRanges;
-  const eventsWithCompetitors = new Map<string, string[]>();
-  eventIds.forEach((eventId, index) => {
-    if (eventId === GROUPSET_EVENT_ID) {
-      eventsWithCompetitors.set(
-        eventId,
-        eventsWithCompetitorsObjects[index].values.map(
-          (competitor: string[]) => ({
-            id: competitor[GROUPSET_ID],
-            name: competitor[GROUPSET_TEAM],
-            place: competitor[GROUPSET_PLACE],
-            "final score": competitor[GROUPSET_FINAL_SCORE],
-            time: competitor[GROUPSET_TIME],
-          })
-        )
-      );
-    } else {
-      eventsWithCompetitors.set(
-        eventId,
-        eventsWithCompetitorsObjects[index].values.map(
-          (competitor: string[]) => ({
-            id: competitor[ID],
-            name: competitor[FIRST_NAME] + " " + competitor[LAST_NAME],
-            school: competitor[SCHOOL],
-            team: competitor[TEAM],
-            place: competitor[PLACE],
-            "final score": competitor[FINAL_SCORE],
-            time: competitor[TIME],
-            scores: [
-              competitor[SCORE1],
-              competitor[SCORE2],
-              competitor[SCORE3],
-              competitor[SCORE4],
-              competitor[SCORE5],
-            ],
-          })
-        )
-      );
+const batchGetRingCompetitors = cache(
+  async (eventIds: string[], ring: number) => {
+    const sheets = google.sheets({ version: "v4" });
+    let sheetId = "";
+    switch (ring) {
+      case RING1:
+        sheetId = RING1_SPREADSHEET_ID;
+        break;
+      case RING2:
+        sheetId = RING2_SPREADSHEET_ID;
+        break;
+      case RING3:
+        sheetId = RING3_SPREADSHEET_ID;
+        break;
+      default:
+        throw new Error("Invalid Ring ID");
     }
-  });
-  return eventsWithCompetitors;
-}
+    const eventRanges = eventIds.map((eventId) => {
+      return eventId + "!A3:T40";
+    });
+    const response = await sheets.spreadsheets.values.batchGet({
+      auth: createAuthClient(),
+      spreadsheetId: sheetId,
+      ranges: eventRanges, //sheet names
+    });
+    const eventsWithCompetitorsObjects = response?.data.valueRanges;
+    const eventsWithCompetitors = new Map<string, string[]>();
+    eventIds.forEach((eventId, index) => {
+      if (eventId === GROUPSET_EVENT_ID) {
+        eventsWithCompetitors.set(
+          eventId,
+          eventsWithCompetitorsObjects[index].values.map(
+            (competitor: string[]) => ({
+              id: competitor[GROUPSET_ID],
+              name: competitor[GROUPSET_TEAM],
+              place: competitor[GROUPSET_PLACE],
+              "final score": competitor[GROUPSET_FINAL_SCORE],
+              time: competitor[GROUPSET_TIME],
+            })
+          )
+        );
+      } else {
+        eventsWithCompetitors.set(
+          eventId,
+          eventsWithCompetitorsObjects[index].values.map(
+            (competitor: string[]) => ({
+              id: competitor[ID],
+              name: competitor[FIRST_NAME] + " " + competitor[LAST_NAME],
+              school: competitor[SCHOOL],
+              team: competitor[TEAM],
+              place: competitor[PLACE],
+              "final score": competitor[FINAL_SCORE],
+              time: competitor[TIME],
+              scores: [
+                competitor[SCORE1],
+                competitor[SCORE2],
+                competitor[SCORE3],
+                competitor[SCORE4],
+                competitor[SCORE5],
+              ],
+            })
+          )
+        );
+      }
+    });
+    return eventsWithCompetitors;
+  }
+);
 
 // TODO: Name this better
 export const getAllEventCompetitors = cache(async (rings: string[][]) => {
@@ -133,8 +135,8 @@ function isEventDone(competitorList: any) {
   if (
     competitorList.find((competitor: any) => {
       return (
-        competitor['final score'] === undefined ||
-        competitor['final score'] === "#NAME?"
+        competitor["final score"] === undefined ||
+        competitor["final score"] === "#NAME?"
       );
     }) === undefined
   ) {
@@ -152,8 +154,8 @@ function getNextThreeCompetitors(competitorList: any[]) {
       break;
     }
     if (
-      competitorList[i]['final score'] === undefined ||
-      competitorList[i]['final score'] === "#NAME?"
+      competitorList[i]["final score"] === undefined ||
+      competitorList[i]["final score"] === "#NAME?"
     ) {
       nextThreeCompetitors = [...nextThreeCompetitors, competitorList[i].name];
       n = n - 1;
@@ -164,7 +166,7 @@ function getNextThreeCompetitors(competitorList: any[]) {
 }
 
 // TODO: Probably want to get all events from one call when we first get to the site
-export const getCurrentEvents = cache(async (rings: string[][]) => {
+export const getCurrentEvents = async (rings: string[][]) => {
   try {
     const ringsWithCompetitorsPromises = rings.map(async (events, index) => {
       return await batchGetRingCompetitors(events, index);
@@ -204,4 +206,4 @@ export const getCurrentEvents = cache(async (rings: string[][]) => {
   } catch (err) {
     console.log(err);
   }
-});
+};
