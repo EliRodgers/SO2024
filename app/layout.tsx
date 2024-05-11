@@ -7,10 +7,10 @@ import Button from "./button";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://collegiates-scoreboard.vercel.app/"),
+  metadataBase: new URL("https://so-2024.vercel.app"),
   title: {
-    default: "25th Annual Collegiate Wushu Tournament",
-    template: "%s | 25th Annual Collegiate Wushu Tournament",
+    default: "2024 Stanford Spring Open Tournament",
+    template: "%s | 2024 Stanford Spring Open Tournament",
   },
   description: "Collegiates scoreboard",
   openGraph: {
