@@ -22,16 +22,7 @@ export default async function Home() {
       <div className="lg:text-lg container lg:py-2 px-7 my-5 lg:my-10 overflow-hidden">
         <Header />
         <div className="text-slate-400 my-5 text-sm lg:text-base text-balanced text-right">
-          Welcome to the{" "}
-          <Link
-            href="http://collegiatewushu.org/home.php"
-            rel="noopener noreferrer"
-            target="_blank"
-            className="font-bold underline decoration-1 text-slate-300 hover:text-bright-blue"
-          >
-            2024 Stanford Spring Open
-          </Link>
-          {/* </a> */}, hosted by Stanford Taekwondo. View live scores here!{" "}
+          Welcome to the 2024 Stanford Spring Open, hosted by Stanford Taekwondo. View live scores here!{" "}
           <br></br>
           <br></br>Competitor names in{" "}
           <span className="text-light-gold"> gold</span> may be clicked for more
