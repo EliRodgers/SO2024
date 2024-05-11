@@ -29,9 +29,9 @@ export default async function Home() {
             target="_blank"
             className="font-bold underline decoration-1 text-slate-300 hover:text-bright-blue"
           >
-            25th Annual Collegiate Wushu Tournament
+            2024 Stanford Spring Open
           </Link>
-          {/* </a> */}, hosted by UCLA Club Wushu. View live scores here!{" "}
+          {/* </a> */}, hosted by Stanford Taekwondo. View live scores here!{" "}
           <br></br>
           <br></br>Competitor names in{" "}
           <span className="text-light-gold"> gold</span> may be clicked for more
