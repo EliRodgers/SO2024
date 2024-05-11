@@ -35,7 +35,7 @@ export default function RootLayout({
         <footer className="py-5 border-t border-gray-900 bg-black bg-opacity-65 overflow-hidden">
           <div className="inline-grid grid-flow-col gap-5 px-5">
             <div className="fill-current text-blue">
-              <Link href="https://www.instagram.com/uclawushu/">
+              <Link href="https://www.instagram.com/stanfordtkd/">
                 <Image
                   src="/instagram.svg"
                   width={20}
@@ -45,7 +45,7 @@ export default function RootLayout({
                 />
               </Link>
             </div>
-            <Link href="https://github.com/rachjn/collegiates-scoreboard">
+            <Link href="https://github.com/EliRodgers/SO2024">
               <Image
                 src="/github.svg"
                 width={20}
