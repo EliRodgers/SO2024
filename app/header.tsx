@@ -22,7 +22,7 @@ const Header = () => {
           alt="photo"
         />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-transparent to-black"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
       {/* <div className="mt-[25rem] lg:text-8xl bg-gradient-to-r from-lightest-blue via-white to-lightest-blue bg-clip-text text-transparent text-[2.5rem] leading-10 font-bold font-grotesksc"> */}
       <div className="relative lg:animate-fade mt-[1.2rem] md:mt-[5rem] lg:text-8xl text-[2.2rem] leading-[2.2rem] font-bold font-source-sans-pro">
         2024 Stanford Spring Open Tournament
