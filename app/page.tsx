@@ -21,7 +21,7 @@ export default async function Home() {
       {/* <div className="absolute top-[50rem] bg-almond -z-10 h-[32rem] w-full"></div> */}
       <div className="lg:text-lg container lg:py-2 px-7 my-5 lg:my-10 overflow-hidden">
         <Header />
-        <div className="text-slate-400 my-5 text-sm lg:text-base text-balanced text-left">
+        <div className="text-white-400 my-2 text-md lg:text-base text-balanced text-left">
           Welcome to the 2024 Stanford Spring Open, hosted by Stanford Taekwondo. View live scores here!{" "}
           <br></br>
           <br></br>Competitor names in{" "}
