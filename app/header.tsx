@@ -11,7 +11,7 @@ const Header = () => {
       </div> */}
       {/* <div className="justify-center items-center lg:col-span-6 p-2 lg:p-5"> */}
       {/* <div className="h-[20rem] mix-blend-multiply absolute -z-10 top-0 left-0 bg-gradient-to-t from-darkest-blue from-20% via-lightest-blue to-transparent md:h-[42rem] lg:h-[48.6rem] w-full" /> */}
-      <div className="relative -top-[2.5rem] md:top-0 left-1/2 transform -translate-x-1/2 w-full -z-20">
+      <div className="relative -top-[2.5rem] md:top-0 left-1/2 transform -translate-x-1/2 w-screen -z-20">
         <Image
           src="/stanford.jpg"
           layout="responsive"
