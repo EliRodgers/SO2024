@@ -25,7 +25,7 @@ export default async function Home() {
           Welcome to the 2024 Stanford Spring Open, hosted by Stanford Taekwondo. View live scores here!{" "}
           <br></br>
           <br></br>Competitor names in{" "}
-          <span className="text-red-800"> red</span> may be clicked for more
+          <span className="text-red-600"> red</span> may be clicked for more
           information. Live scores can be found under the events tab.
         </div>
         {currentEvents?.map((ring, index) => {
