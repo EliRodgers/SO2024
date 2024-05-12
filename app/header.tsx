@@ -22,9 +22,9 @@ const Header = () => {
         />
       </div>
       {/* <div className="mt-[25rem] lg:text-8xl bg-gradient-to-r from-lightest-blue via-white to-lightest-blue bg-clip-text text-transparent text-[2.5rem] leading-10 font-bold font-grotesksc"> */}
-      <div className="lg:animate-fade mt-[7.2rem] md:mt-[25rem] lg:text-8xl text-[2.2rem] leading-[2.2rem] font-bold font-grotesksc">
+      <div className="lg:animate-fade mt-[7.2rem] md:mt-[25rem] lg:text-8xl text-[2.2rem] leading-[2.2rem] font-bold font-arial">
         2024 Stanford Spring Open Tournament
-        <div className="lg:text-2xl text-base bg-gradient-to-r from-lighter-blue from-30% via-bright-blue to-lighter-blue to-70% bg-clip-text text-transparent font-bold italic font-grotesksc">
+        <div className="lg:text-2xl text-base bg-gradient-to-r from-lighter-blue from-30% via-bright-blue to-lighter-blue to-70% bg-clip-text text-transparent font-bold italic font-arial">
           May 25, 2024 ⋆ Stanford, CA
         </div>
       </div>
