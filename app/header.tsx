@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Header = () => {
   return (
-    <header className="relative overflow-hidden">
+    <header className="overflow-hidden">
       {/* <div className="flex lg:shrink-0 col-span-1 lg:py-5 items-center justify-center transition ease-in-out delay:150 duration:300 hover:scale-105 hover:animate-pulse">
         <div className="transform scale-75 lg:scale-100">
           <Button />
