@@ -14,7 +14,7 @@ const Header = () => {
       <div className="relative -top-[2.5rem] md:top-0 w-full -z-20">
         <Image
           src="/stanford.jpg"
-          layout="responsive"
+          layout="fill"
           width={0}
           height={0}
           sizes="100vw"
