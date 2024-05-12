@@ -13,11 +13,11 @@ const Header = () => {
       {/* <div className="h-[20rem] mix-blend-multiply absolute -z-10 top-0 left-0 bg-gradient-to-t from-darkest-blue from-20% via-lightest-blue to-transparent md:h-[42rem] lg:h-[48.6rem] w-full" /> */}
       <div className="absolute -z-20 -top-[2.5rem] md:top-0 lg:-top-[18.3rem] left-0">
         <Image
-          src="/stanford.jpg"
+          src="/uclawushu.jpg"
           width={0}
           height={0}
           sizes="100vw"
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "auto" }}
           alt="photo"
         />
       </div>
