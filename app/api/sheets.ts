@@ -11,6 +11,7 @@ const ADMIN_SPREADSHEET_ID = process.env.ADMIN_SPREADSHEET_ID;
 const COMPETITORS_TAB = process.env.COMPETITORS_TAB;
 const SCHEDULE_TAB = process.env.SCHEDULE_TAB;
 const SERVICE_ACCOUNT = process.env.SERVICE_ACCOUNT;
+const BRACKET_TAB = process.env.BRACKET_TAB;
 
 // Competitor Tab Headers
 const ID = 0;
