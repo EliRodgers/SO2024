@@ -24,6 +24,10 @@ export const eventMap = new Map<number, string>([
     [341, "Taiji Weapon"],
     [361, "Internal Open Fist"],
     [381, "Internal Open Weapon"],
+    [382, "Poomsae"],
+    [383, "Sparring"],
+    [384, "Demo"],
+    [385, "CS 111"],
     [901, "Group Set"]
 ])
 
