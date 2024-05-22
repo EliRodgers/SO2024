@@ -52,6 +52,7 @@ const events = (competitor: string[]) => {
 export const createAuthClient = () => {
   // Get JWT Token to access sheet
   const service_account = JSON.parse(SERVICE_ACCOUNT);
+  console.log("err1");
   const jwtClient = new google.auth.JWT(
     service_account.client_email,
     //keys.client_email,
@@ -60,13 +61,14 @@ export const createAuthClient = () => {
     //keys.private_key,
     ["https://www.googleapis.com/auth/spreadsheets"]
   );
+  console.log("err2");
   jwtClient.authorize(function (err: any) {
     if (err) {
       console.log("The error is in authorization (hooray I guess");
       throw err;
     }
   });
-  //console.log(jwtClient);
+  console.log(jwtClient);
   return jwtClient;
 };
 
