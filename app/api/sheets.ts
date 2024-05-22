@@ -149,7 +149,7 @@ export const getRingSchedules = cache(async () => {
 
 export const getTeams = cache(async () => {
   try {
-    const TEAMS_PATH = process.cwd() + "/app/teams/teams.json";
+    const TEAMS_PATH = process.cwd() + "/app/teams/tkd_teams.json";
     if (fs.existsSync(TEAMS_PATH)) {
       const teamsJSON = JSON.parse(fs.readFileSync(TEAMS_PATH, "utf8"));
       return teamsJSON;
