@@ -153,7 +153,8 @@ export const getRingSchedules = cache(async () => {
 });
 
 export const getTeams = cache(async () => {
-  try {
+  console.log("fetch1");
+  try { 
     const TEAMS_PATH = process.cwd() + "/app/teams/teams.json";
     console.log("path sucessfully fetched");
     if (fs.existsSync(TEAMS_PATH)) {
