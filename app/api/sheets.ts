@@ -1,5 +1,6 @@
 //@ts-nocheck
 //const dotenv = require("dotenv");
+import keys from "../../credentials.json";
 const fs = require("fs");
 const path = require("path");
 const process = require("process");
@@ -50,11 +51,13 @@ const events = (competitor: string[]) => {
 
 export const createAuthClient = () => {
   // Get JWT Token to access sheet
-  const service_account = JSON.parse(SERVICE_ACCOUNT);
+  //const service_account = JSON.parse(SERVICE_ACCOUNT);
   const jwtClient = new google.auth.JWT(
-    service_account.client_email,
+    //service_account.client_email,
+    keys.client_email,
     "",
-    service_account.private_key,
+    //service_account.private_key,
+    keys.private_key,
     ["https://www.googleapis.com/auth/spreadsheets"]
   );
   jwtClient.authorize(function (err: any) {
@@ -62,6 +65,7 @@ export const createAuthClient = () => {
       throw err;
     }
   });
+  //console.log(jwtClient);
   return jwtClient;
 };
 
@@ -108,6 +112,7 @@ export const getCompetitorList = cache(async () => {
       events: events(competitor),
     }));
     console.log("Successfully fetched competitor list.");
+    console.log(competitors);
     return competitors;
   } catch (err) {
     console.log(err);
@@ -149,11 +154,13 @@ export const getRingSchedules = cache(async () => {
 
 export const getTeams = cache(async () => {
   try {
-    const TEAMS_PATH = process.cwd() + "/app/teams/tkd_teams.json";
+    const TEAMS_PATH = process.cwd() + "/app/teams/teams.json";
+    console.log("path sucessfully fetched");
     if (fs.existsSync(TEAMS_PATH)) {
       const teamsJSON = JSON.parse(fs.readFileSync(TEAMS_PATH, "utf8"));
       return teamsJSON;
     } else {
+      console.log("pain");
       const competitors = await getCompetitorList();
       const teams = new Map<string, any[]>();
       competitors.forEach((competitor: any) => {
