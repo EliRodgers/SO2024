@@ -40,7 +40,10 @@ export const getEventName = (eventId : string) => {
     const levelCode = eventId[0]
     const genderCode = eventId[1]
     const eventCode = eventId.slice(3)
-    
+    console.log(levelCode);
+    console.log(genderCode);
+    console.log(eventCode);
+
     let level = ""
     switch (levelCode) {
         case "A":
