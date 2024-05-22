@@ -161,9 +161,10 @@ export const getTeams = cache(async () => {
       const teamsJSON = JSON.parse(fs.readFileSync(TEAMS_PATH, "utf8"));
       return teamsJSON;
     } else {
-      console.log("pain");
       const competitors = await getCompetitorList();
+      console.log("fetch2");
       const teams = new Map<string, any[]>();
+      console.log("fetch3");
       competitors.forEach((competitor: any) => {
         if (competitor.team != undefined) {
           if (competitor.team !== "") {
@@ -179,11 +180,14 @@ export const getTeams = cache(async () => {
           }
         }
       });
+      console.log("fetch4");
       let teamsJSON = [];
       teams.forEach((value, key) => {
         teamsJSON = [...teamsJSON, { name: key, members: value }];
       });
+      console.log("fetch5");
       fs.open(TEAMS_PATH, "a", function (err, fd) {
+        console.log("fetch6");
         if (err) {
           console.log("Cant open file");
         } else {
