@@ -192,8 +192,8 @@ export const getTeams = cache(async () => {
         teamsJSON = [...teamsJSON, { name: key, members: value }];
       });
       console.log("fetch5");
-      if (!fs.existsSync(TEAMS_DIR)) { // Gaslight, Gatekeep, Girlboss
-        fs.mkdirSync(TEAMS_DIR, { recursive: true }); // Create directory recursively if it doesn't exist
+      if (!fs.existsSync(TEAMS_PATH)) { // Gaslight, Gatekeep, Girlboss
+        fs.mkdirSync(TEAMS_PATH, { recursive: true }); // Create directory recursively if it doesn't exist
       }
       fs.open(TEAMS_PATH, "a", function (err, fd) {
         console.log("fetch6");
