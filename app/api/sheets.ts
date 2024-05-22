@@ -193,6 +193,7 @@ export const getTeams = cache(async () => {
       fs.open(TEAMS_PATH, "a", function (err, fd) {
         console.log("fetch6");
         if (err) {
+          console.log(err);
           console.log("Cant open file");
         } else {
           fs.write(
