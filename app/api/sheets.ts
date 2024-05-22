@@ -1,6 +1,6 @@
 //@ts-nocheck
 //const dotenv = require("dotenv");
-import keys from "../../credentials.json";
+import keys from "./credentials.json";
 const fs = require("fs");
 const path = require("path");
 const process = require("process");
