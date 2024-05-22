@@ -64,7 +64,6 @@ export const createAuthClient = () => {
   console.log("err2");
   jwtClient.authorize(function (err: any) {
     if (err) {
-      console.log("The error is in authorization (hooray I guess");
       throw err;
     }
   });
