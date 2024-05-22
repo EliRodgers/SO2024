@@ -96,6 +96,7 @@ export const getCompetitorList = cache(async () => {
       spreadsheetId: ADMIN_SPREADSHEET_ID,
       range: COMPETITORS_TAB,
     });
+    console.log("Auth client sucessfully created");
     const rows = response?.data.values;
     if (!rows || rows.length == 0) {
       console.log("Error: no data found");
