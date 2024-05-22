@@ -1,6 +1,6 @@
 //@ts-nocheck
 //const dotenv = require("dotenv");
-import keys from "./credentials.json";
+//import keys from "./credentials.json";
 const fs = require("fs");
 const path = require("path");
 const process = require("process");
@@ -51,13 +51,13 @@ const events = (competitor: string[]) => {
 
 export const createAuthClient = () => {
   // Get JWT Token to access sheet
-  //const service_account = JSON.parse(SERVICE_ACCOUNT);
+  const service_account = JSON.parse(SERVICE_ACCOUNT);
   const jwtClient = new google.auth.JWT(
-    //service_account.client_email,
-    keys.client_email,
+    service_account.client_email,
+    //keys.client_email,
     "",
-    //service_account.private_key,
-    keys.private_key,
+    service_account.private_key,
+    //keys.private_key,
     ["https://www.googleapis.com/auth/spreadsheets"]
   );
   jwtClient.authorize(function (err: any) {
